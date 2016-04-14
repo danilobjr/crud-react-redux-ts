@@ -1,0 +1,21 @@
+{
+  "name": "crud-react-redux-ts",
+  "version": "1.0.0",
+  "description": "CRUD app made with React, React-Router, Redux and Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://fake"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "redux",
+    "typescript"
+  ],
+  "author": "Danilo Barros <danilobjr@gmail.com>",
+  "license": "ISC"
+}
