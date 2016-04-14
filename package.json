@@ -17,5 +17,12 @@
     "typescript"
   ],
   "author": "Danilo Barros <danilobjr@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "lodash": "^4.11.1"
+  }
 }
