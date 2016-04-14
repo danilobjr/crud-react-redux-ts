@@ -1,31 +1,42 @@
 const path = require('path');
 const _ = require('lodash');
 
-const paths = {
-	src: 'src/index.js',
-	build: 'build/build.js'
+const PATHS = {
+    src: path.join(__dirname, 'src'),
+    build: path.join(__dirname, 'build')
 };
 
 const commonConfig = {
-	entry: path.join(__dirname, paths.src),
+	entry: {
+        filename: PATHS.src + '/index.ts'
+    },
 	output: {
-		filename: paths.build
+        path: PATHS.build,
+		filename: 'bundle.js'
 	},
 	resolve:{
-		extensions: ['', '.js']
-	}
+		extensions: ['', '.js', '.ts']
+	},
+    module: {
+        loaders: [
+            {
+                test: /\.ts$/,
+                include: /src/,
+                loader: 'ts'
+            }
+        ]
+    }
 };
 
 const TARGET = process.env.npm_lifecycle_event;
 
-var configuration = {};
-
 if (TARGET === 'start' || !TARGET) {
 	const devConfig = {
-		
+        devTool: 'eval-source-map',
+        devServer: {
+            contentBase: PATHS.build,
+        }
 	};
 
-	configuration = _.merge(commonConfig, devConfig);
+	module.exports = _.merge(commonConfig, devConfig);
 }
-
-module.exports = configuration;
