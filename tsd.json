@@ -10,6 +10,15 @@
     },
     "react/react-dom.d.ts": {
       "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "react-router/history.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "react-router/react-router.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "react-bootstrap/react-bootstrap.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
     }
   }
 }
