@@ -20,11 +20,14 @@
   "license": "ISC",
   "devDependencies": {
     "ts-loader": "^0.8.2",
+    "tsd": "^0.6.5",
     "typescript": "^1.8.10",
     "webpack": "^1.12.15",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "lodash": "^4.11.1"
+    "lodash": "^4.11.1",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
   }
 }

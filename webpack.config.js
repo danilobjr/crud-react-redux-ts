@@ -8,19 +8,19 @@ const PATHS = {
 
 const commonConfig = {
 	entry: {
-        filename: PATHS.src + '/index.ts'
+        filename: PATHS.src + '/index.tsx'
     },
 	output: {
         path: PATHS.build,
 		filename: 'bundle.js'
 	},
 	resolve:{
-		extensions: ['', '.js', '.ts']
+		extensions: ['', '.js', '.ts', '.tsx']
 	},
     module: {
         loaders: [
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 include: /src/,
                 loader: 'ts'
             }
