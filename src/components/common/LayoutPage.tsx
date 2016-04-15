@@ -6,6 +6,7 @@ import { Container } from './Container';
 interface ILayoutPageProps {
     title: string;
     subtitle?: string;
+    headerButton?: JSX.Element;
 }
 
 export class LayoutPage extends React.Component<ILayoutPageProps, any> {
@@ -45,7 +46,16 @@ export class LayoutPage extends React.Component<ILayoutPageProps, any> {
 
     renderPageHeader() {
         const subtitle = (this.props.subtitle) ? <small>{' '}{this.props.subtitle}</small> : '';
+        let pageHeaderClassName = '';
+        let headerButton: JSX.Element;
+        
+        if (this.props.headerButton) {
+            headerButton = <div className="header-button">{this.props.headerButton}</div>;
+            pageHeaderClassName = 'clearfix with-header-button';
+        }
 
-        return <PageHeader>{this.props.title}{subtitle}</PageHeader>;
+        return (
+            <PageHeader className={pageHeaderClassName}>{this.props.title}{subtitle}{headerButton}</PageHeader>
+        );
     }
 }
