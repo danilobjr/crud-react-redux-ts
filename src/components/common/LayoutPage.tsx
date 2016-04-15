@@ -27,7 +27,7 @@ export class LayoutPage extends React.Component<ILayoutPageProps, any> {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">CRUD Link</Link>
+                        <Link to="/">CRUD</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
