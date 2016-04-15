@@ -3,7 +3,5 @@
 }
 
 .header-button {
-    position: absolute;
-    right: 0;
-    bottom: 26px;
+    @include position(absolute, null 0 26px null);
 }
