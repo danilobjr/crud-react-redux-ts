@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import { Navbar, Nav, NavDropdown, MenuItem, PageHeader } from 'react-bootstrap';
 import { Container } from './Container';
 
@@ -26,15 +27,15 @@ export class LayoutPage extends React.Component<ILayoutPageProps, any> {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">CRUD</a>
+                        <Link to="/">CRUD Link</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
                         <NavDropdown title="Students" id="students-dropdown">
-                            <MenuItem>Show List</MenuItem>
-                            <MenuItem>Add New</MenuItem>
+                            <MenuItem href="#/students">Show List</MenuItem>
+                            <MenuItem href="#/students/new">Add New</MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
