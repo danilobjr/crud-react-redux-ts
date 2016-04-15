@@ -2,12 +2,8 @@
     position: relative;
 }
 
-.with-header-button {
-    margin-top: 20px !important;
-
-    .header-button {
-        position: absolute;
-        right: 0;
-        bottom: 26px;
-    }    
+.header-button {
+    position: absolute;
+    right: 0;
+    bottom: 26px;
 }

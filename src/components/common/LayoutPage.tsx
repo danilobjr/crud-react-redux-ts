@@ -51,11 +51,10 @@ export class LayoutPage extends React.Component<ILayoutPageProps, any> {
         
         if (this.props.headerButton) {
             headerButton = <div className="header-button">{this.props.headerButton}</div>;
-            pageHeaderClassName = 'clearfix with-header-button';
         }
 
         return (
-            <PageHeader className={pageHeaderClassName}>{this.props.title}{subtitle}{headerButton}</PageHeader>
+            <PageHeader>{this.props.title}{subtitle}{headerButton}</PageHeader>
         );
     }
 }
