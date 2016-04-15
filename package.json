@@ -17,7 +17,7 @@
     "typescript"
   ],
   "author": "Danilo Barros <danilobjr@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "ts-loader": "^0.8.2",
     "tsd": "^0.6.5",
