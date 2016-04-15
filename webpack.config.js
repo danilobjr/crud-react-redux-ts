@@ -28,6 +28,11 @@ const commonConfig = {
                 test: /\.s?css$/,
                 include: /src/,
                 loader: 'style!css!sass'
+            },
+            {
+                test: /\.(eot|woff|woff2|ttf|svg)$/,
+                include: /src/,
+                loader: 'url'
             }
         ]
     }
