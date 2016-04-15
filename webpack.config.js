@@ -15,7 +15,7 @@ const commonConfig = {
 		filename: 'bundle.js'
 	},
 	resolve:{
-		extensions: ['', '.js', '.ts', '.tsx']
+		extensions: ['', '.scss', '.js', '.ts', '.tsx']
 	},
     module: {
         loaders: [
@@ -23,6 +23,11 @@ const commonConfig = {
                 test: /\.tsx?$/,
                 include: /src/,
                 loader: 'ts'
+            },
+            {
+                test: /\.s?css$/,
+                include: /src/,
+                loader: 'style!css!sass'
             }
         ]
     }

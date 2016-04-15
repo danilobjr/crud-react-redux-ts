@@ -19,6 +19,10 @@
   "author": "Danilo Barros <danilobjr@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "css-loader": "^0.23.1",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
     "tsd": "^0.6.5",
     "typescript": "^1.8.10",
