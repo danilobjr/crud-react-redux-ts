@@ -30,7 +30,7 @@ const commonConfig = {
                 loader: 'style!css!sass'
             },
             {
-                test: /\.(eot|woff|woff2|ttf|svg)$/,
+                test: /\.(otf|eot|woff|woff2|ttf|svg)(\?\S*)?$/,
                 include: /src/,
                 loader: 'url'
             }
