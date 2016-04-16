@@ -1,0 +1,18 @@
+.table-component {
+    
+    .fa {
+        color: $gray-light;
+    }
+    
+    a:hover .fa {
+        color: $gray-dark;
+    }
+    
+    .filter {
+                
+        input[type=search] {
+            @extend .pull-right;
+            width: 200px;
+        }        
+    }
+}
