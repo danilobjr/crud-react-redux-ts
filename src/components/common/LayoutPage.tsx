@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router';
-import { Navbar, Nav, NavDropdown, MenuItem, PageHeader } from 'react-bootstrap';
-import { Container } from './Container';
+import { Grid, Navbar, Nav, NavDropdown, MenuItem, PageHeader } from 'react-bootstrap';
 
 interface ILayoutPageProps {
     title: string;
@@ -15,10 +14,10 @@ export class LayoutPage extends React.Component<ILayoutPageProps, any> {
             <div>
                 {this.renderNavbar()}
 
-                <Container>
+                <Grid>
                     {this.renderPageHeader()}
                     {this.props.children}
-                </Container>
+                </Grid>
             </div>
         );
     }
