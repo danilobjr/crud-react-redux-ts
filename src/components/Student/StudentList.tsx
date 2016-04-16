@@ -7,7 +7,7 @@ export class StudentList extends React.Component<any, any> {
         return (
             <LayoutPage 
                 title="Students"
-                headerButton={<Button bsStyle="primary">Add New</Button>}
+                headerButton={<Button href="#/students/new"><span className="fa fa-plus"></span> Add New</Button>}
             >
                 <Row>
                     <Col sm={12}>
