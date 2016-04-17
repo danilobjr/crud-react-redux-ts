@@ -29,6 +29,18 @@ export class StudentsList extends React.Component<IStudentsTableListProps, any> 
     }
     
     renderTableRows() {
+        const thereIsNoStudents = _.isEmpty(this.props.students);
+        
+        if (thereIsNoStudents) {
+            return [
+                <tr key="0">
+                    <td className="text-center" colSpan="4">
+                        Empty data
+                    </td>
+                </tr>
+            ];
+        }
+        
         return this.props.students.map(student => {
             var registrationIconClass = this.getRegistrationIconClass(student.registered);
             
