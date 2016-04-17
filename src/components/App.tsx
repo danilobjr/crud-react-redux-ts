@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
-import { StudentsListPage } from './Student/StudentsListPage';
-import { NewStudent } from './Student/NewStudent';
+import { StudentsListPage } from './student/studentsList/StudentsListPage';
+import { NewStudent } from './student/NewStudent';
 
 export class App extends React.Component<any, any> {
     render() {
