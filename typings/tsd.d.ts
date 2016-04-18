@@ -9,3 +9,6 @@
 /// <reference path="node-uuid/node-uuid.d.ts" />
 /// <reference path="node/node.d.ts" />
 /// <reference path="lodash/lodash.d.ts" />
+/// <reference path="react-router-redux/react-router-redux.d.ts" />
+/// <reference path="redux/redux.d.ts" />
+/// <reference path="react-redux/react-redux.d.ts" />
