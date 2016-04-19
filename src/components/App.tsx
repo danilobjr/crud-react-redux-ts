@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import { appReducer } from './appReducer';
 import { StudentsListPage } from './student/list/StudentsListPage';
-import { NewStudent } from './student/NewStudent';
+import { NewStudentPage } from './student/new/NewStudentPage';
 
 const initialState = {
     searchTerm: '',
@@ -45,7 +45,7 @@ export class App extends React.Component<any, any> {
                 <Router history={history}>
                     <Route path="/" component={StudentsListPage} />
                     <Route path="students" component={StudentsListPage} />
-                    <Route path="students/new" component={NewStudent} />
+                    <Route path="students/new" component={NewStudentPage} />
                 </Router>
             </Provider>
         );
