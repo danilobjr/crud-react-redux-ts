@@ -44,7 +44,7 @@ export class StudentsList extends React.Component<IStudentsListProps, any> {
         
         return this.props.students.map(student => {            
             return (
-                <StudentItem student={student} onRemove={this.onRemove} />
+                <StudentItem key={student.registrationNumber} student={student} onRemove={this.onRemove} />
             );
         });
     }

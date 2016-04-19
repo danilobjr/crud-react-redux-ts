@@ -13,7 +13,7 @@ export class StudentItem extends React.Component<IStudentItemProps, any> {
         var registrationIconClass = this.getRegistrationIconClass(this.props.student.registered);
         
         return (
-            <tr key={this.props.student.registrationNumber}>
+            <tr>
                 <td><span className={registrationIconClass}></span></td>
                 <td>{this.props.student.name}</td>
                 <td>{this.props.student.registrationNumber}</td>
