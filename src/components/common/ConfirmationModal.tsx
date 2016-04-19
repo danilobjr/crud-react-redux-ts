@@ -31,7 +31,7 @@ export class ConfirmationModal extends React.Component<IConfirmationModalProps, 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button bsStyle="primary" onClick={this.onPositiveAnswer}>Yes</Button>
-                    <Button onClick={this.hide}>No</Button>
+                    <Button onClick={this.onNegativeAnswer}>No</Button>
                 </Modal.Footer>
             </Modal>            
         );
@@ -47,5 +47,10 @@ export class ConfirmationModal extends React.Component<IConfirmationModalProps, 
     
     onPositiveAnswer = (): void => {
         this.props.onPositiveAnswer();
+    }
+    
+    onNegativeAnswer = (): void => {
+        this.hide();
+        this.props.onNegativeAnswer();
     }
 }
