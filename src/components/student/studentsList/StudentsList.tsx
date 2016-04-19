@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { IStudentModel } from './../IStudentModel';
 import { Link } from 'react-router';
 import { Table } from './../../common/Table';
-import { IStudentModel } from './../IStudentModel';
+import { StudentItem } from './StudentItem';
 
 interface IStudentsListProps {
     students: IStudentModel[];
@@ -41,40 +42,14 @@ export class StudentsList extends React.Component<IStudentsListProps, any> {
             ];
         }
         
-        return this.props.students.map(student => {
-            var registrationIconClass = this.getRegistrationIconClass(student.registered);
-            
+        return this.props.students.map(student => {            
             return (
-                <tr key={student.registrationNumber}>
-                    <td><span className={registrationIconClass}></span></td>
-                    <td>{student.name}</td>
-                    <td>{student.registrationNumber}</td>
-                    <td>
-                        <Link to={`/students/details/${student.registrationNumber}`}>
-                            <span className="fa fa-search fa-fw"></span>
-                        </Link>
-                        <Link to={`/students/edit/${student.registrationNumber}`}>
-                            <span className="fa fa-pencil fa-fw"></span>
-                        </Link>
-                        <a href="#" onClick={() => this.onRemove(student)}>
-                            <span className="fa fa-times fa-fw"></span>
-                        </a>
-                    </td>
-                </tr>
+                <StudentItem student={student} onRemove={this.onRemove} />
             );
         });
     }
     
-    getRegistrationIconClass(isStudentRegistered: boolean) {
-        var registrationIconClass = ['fa'];
-            (isStudentRegistered) 
-                ? registrationIconClass.push('fa-check-circle')
-                : registrationIconClass.push('fa-exclamation-circle');
-                
-        return registrationIconClass.join(' ');
-    }
-    
-    onRemove(studentToRemove: IStudentModel) {
+    onRemove = (studentToRemove: IStudentModel) => {
         this.props.onRemove(studentToRemove);
     };
 }
