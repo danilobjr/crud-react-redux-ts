@@ -18,7 +18,7 @@ export class StudentItem extends React.Component<IStudentItemProps, any> {
                 <td>{this.props.student.name}</td>
                 <td>{this.props.student.registrationNumber}</td>
                 <td>
-                    <Link to={`/students/details`}>
+                    <Link to={`/students/details/${this.props.student.registrationNumber}`}>
                         <span className="fa fa-search fa-fw"></span>
                     </Link>
                     <Link to={`/students/edit/${this.props.student.registrationNumber}`}>

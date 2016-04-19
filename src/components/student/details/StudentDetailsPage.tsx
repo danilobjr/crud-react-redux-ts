@@ -1,30 +1,40 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common/LayoutPage';
+import { IStudentModel } from './../IStudentModel';
 
-export class StudentDetailsPage extends React.Component<any, any> {
+interface IPageProps {
+    student: IStudentModel;
+}
+
+class Page extends React.Component<IPageProps, any> {
     render() {
         return (
-            <LayoutPage title="Get student name from router">
+            <LayoutPage 
+                title={this.props.student.name}
+                subtitle="student details"
+            >
                 <Row>
                     <Col md={12}>
                         <Row>
                             <Col md={12}>
                                 <label>Registration Number</label>
-                                <p>123456789</p>
+                                <p>{this.props.student.registrationNumber}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col md={12}>
                                 <label>Name</label>
-                                <p>Fulano</p>
+                                <p>{this.props.student.name}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col md={12}>
                                 <label>Registered?</label>
-                                <p>Yes</p>
+                                <p>{this.registeredToString()}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -37,4 +47,18 @@ export class StudentDetailsPage extends React.Component<any, any> {
             </LayoutPage>
         );
     }
+    
+    registeredToString() {
+        return this.props.student.registered ? 'Yes' : 'No';
+    }
 }
+
+const mapStateToProps = (state, props) => {
+    const student = _.find<IStudentModel>(state.students, s => s.registrationNumber === props.params.registrationNumber);
+    
+    return {
+        student
+    };
+};
+
+export const StudentDetailsPage = connect(mapStateToProps)(Page);

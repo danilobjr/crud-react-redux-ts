@@ -1,4 +1,3 @@
-import * as uuid from 'node-uuid';
 import * as React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -14,22 +13,22 @@ const initialState = {
     studentToRemove: null,
     students: [
         {
-            registrationNumber: uuid.v4(),
+            registrationNumber: '11111',
             name: 'Fulano',
             registered: true
         },
         {
-            registrationNumber: uuid.v4(),
+            registrationNumber: '22222',
             name: 'Cicrano',
             registered: false
         },
         {
-            registrationNumber: uuid.v4(),
+            registrationNumber: '33333',
             name: 'Silva',
             registered: true
         },
         {
-            registrationNumber: uuid.v4(),
+            registrationNumber: '44444',
             name: 'Fernanda',
             registered: true
         }
@@ -47,7 +46,7 @@ export class App extends React.Component<any, any> {
                     <Route path="/" component={StudentsListPage} />
                     <Route path="students" component={StudentsListPage} />
                     <Route path="students/new" component={NewStudentPage} />
-                    <Route path="students/details" component={StudentDetailsPage} />                    
+                    <Route path="students/details/:registrationNumber" component={StudentDetailsPage} />                    
                 </Router>
             </Provider>
         );
