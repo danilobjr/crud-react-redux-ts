@@ -7,6 +7,7 @@ import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import { appReducer } from './appReducer';
 import { StudentsListPage } from './student/list/StudentsListPage';
 import { NewStudentPage } from './student/new/NewStudentPage';
+import { StudentDetailsPage } from './student/details/StudentDetailsPage';
 
 const initialState = {
     searchTerm: '',
@@ -46,6 +47,7 @@ export class App extends React.Component<any, any> {
                     <Route path="/" component={StudentsListPage} />
                     <Route path="students" component={StudentsListPage} />
                     <Route path="students/new" component={NewStudentPage} />
+                    <Route path="students/details" component={StudentDetailsPage} />                    
                 </Router>
             </Provider>
         );
