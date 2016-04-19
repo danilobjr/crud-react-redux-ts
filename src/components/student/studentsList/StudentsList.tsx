@@ -3,13 +3,13 @@ import { Link } from 'react-router';
 import { Table } from './../../common/Table';
 import { IStudentModel } from './../IStudentModel';
 
-interface IStudentsTableListProps {
+interface IStudentsListProps {
     students: IStudentModel[];
     onSearch: (searchTerm: string) => void;
     onRemove: (studentToRemove: IStudentModel) => void;
 }
 
-export class StudentsList extends React.Component<IStudentsTableListProps, any> {
+export class StudentsList extends React.Component<IStudentsListProps, any> {
     render() {
         return (
             <Table striped hover showSearch onSearch={this.props.onSearch}>
