@@ -18,19 +18,6 @@ interface IPageState {
 
 class Page extends React.Component<any, IPageState> {
     private confirmationModal: ConfirmationModal;
-    private dispatch = this.props.dispatch;
-    private students: IStudentModel[];
-    private studentToRemove: IStudentModel;
-    private searchTerm: string;
-    
-    constructor(props) {
-        super(props);
-        
-        this.dispatch = props.dispatch;
-        this.students = props.students;
-        this.studentToRemove = props.studentToRemove;
-        this.searchTerm = props.searchTerm;
-    }
     
     render() {        
         return (
@@ -57,31 +44,33 @@ class Page extends React.Component<any, IPageState> {
         this.props.dispatch(changeSearchTerm(searchTerm));
     }
     
-    getFilteredStudents() {        
-        if (_.isEmpty(this.searchTerm)) {
-            return this.students;
+    getFilteredStudents() {
+        const { searchTerm, students } = this.props;
+        
+        if (_.isEmpty(searchTerm)) {
+            return students;
         }
         
-        const filteredStudents = this.students.filter(student => {
-            return student.name.toLowerCase().search(this.searchTerm) > -1 || 
-                   student.registrationNumber.toLowerCase().search(this.searchTerm) > -1;
+        const filteredStudents = students.filter(student => {
+            return student.name.toLowerCase().search(searchTerm) > -1 || 
+                   student.registrationNumber.toLowerCase().search(searchTerm) > -1;
         });
         
         return filteredStudents;
     }
     
     confirmStudentRemoval = (studentToRemove: IStudentModel): void => {        
-        this.dispatch(setStudentToRemove(studentToRemove));
+        this.props.dispatch(setStudentToRemove(studentToRemove));
         
         this.confirmationModal.show();
     }
     
     clearRemovalStudentFromState = (): void => {
-        this.dispatch(setStudentToRemove(null));
+        this.props.dispatch(setStudentToRemove(null));
     }
     
     removeStudent = (): void => {        
-        this.dispatch(removeStudent(this.studentToRemove.registrationNumber));
+        this.props.dispatch(removeStudent(this.props.studentToRemove.registrationNumber));
             
         this.confirmationModal.hide();
     }
