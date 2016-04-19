@@ -10,10 +10,10 @@ export function students(state = [], action) {
             
             const index = state.indexOf(studentToRemove);
         
-            return _.assign({}, state, [
+            return [
                 ...state.slice(0, index),
                 ...state.slice(index + 1)
-            ]);
+            ];
         default:
             return state;
     }

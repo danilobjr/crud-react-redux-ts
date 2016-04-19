@@ -26,6 +26,11 @@ const initialState = {
             registrationNumber: uuid.v4(),
             name: 'Silva',
             registered: true
+        },
+        {
+            registrationNumber: uuid.v4(),
+            name: 'Fernanda',
+            registered: true
         }
     ]
 };

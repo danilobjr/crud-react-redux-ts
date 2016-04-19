@@ -1,52 +1,42 @@
 import * as React from 'react';
 import * as uuid from 'node-uuid';
 import * as _ from 'lodash';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 import { ConfirmationModal } from './../../common/ConfirmationModal';
 import { LayoutPage } from './../../common/LayoutPage';
 import { IStudentModel } from './../IStudentModel';
 import { StudentsList } from './StudentsList';
+import { changeSearchTerm, setStudentToRemove, removeStudent } from './actions';
 
-interface IStudentsListPageState {
+interface IPageState {
     searchTerm: string;
     students: IStudentModel[];
     studentToRemove: IStudentModel;
 }
 
-export class StudentsListPage extends React.Component<any, IStudentsListPageState> {
+class Page extends React.Component<any, IPageState> {
     private confirmationModal: ConfirmationModal;
+    private dispatch = this.props.dispatch;
+    private students: IStudentModel[];
+    private studentToRemove: IStudentModel;
+    private searchTerm: string;
     
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         
-        this.state = {
-            searchTerm: '',
-            studentToRemove: null,
-            students: [
-                {
-                    registrationNumber: uuid.v4(),
-                    name: 'Fulano',
-                    registered: true
-                },
-                {
-                    registrationNumber: uuid.v4(),
-                    name: 'Cicrano',
-                    registered: false
-                },
-                {
-                    registrationNumber: uuid.v4(),
-                    name: 'Silva',
-                    registered: true
-                }
-            ]
-        };
+        this.dispatch = props.dispatch;
+        this.students = props.students;
+        this.studentToRemove = props.studentToRemove;
+        this.searchTerm = props.searchTerm;
     }
     
     render() {        
         return (
             <LayoutPage 
                 title="Students"
-                headerButton={<Button href="#/students/new"><span className="fa fa-plus"></span> Add New</Button>}
+                headerButton={<Link className="btn btn-primary" to="/students/new"><span className="fa fa-plus"></span> Add New</Link>}
             >
                 <StudentsList 
                     students={this.getFilteredStudents()} 
@@ -63,59 +53,44 @@ export class StudentsListPage extends React.Component<any, IStudentsListPageStat
         );
     }
     
-    changeSearchTerm = (searchTerm: string) => {        
-        const updatedState = _.assign({}, this.state, {
-            searchTerm,
-        }) as IStudentsListPageState;
-        
-        this.setState(updatedState);
+    changeSearchTerm = (searchTerm: string) => {
+        this.props.dispatch(changeSearchTerm(searchTerm));
     }
     
     getFilteredStudents() {        
-        const searchTerm = this.state.searchTerm;        
-        
-        if (_.isEmpty(searchTerm)) {
-            return this.state.students;
+        if (_.isEmpty(this.searchTerm)) {
+            return this.students;
         }
         
-        const filteredStudents = this.state.students.filter(student => {            
-            return student.name.toLowerCase().search(searchTerm) > -1 || 
-                   student.registrationNumber.toLowerCase().search(searchTerm) > -1;
+        const filteredStudents = this.students.filter(student => {
+            return student.name.toLowerCase().search(this.searchTerm) > -1 || 
+                   student.registrationNumber.toLowerCase().search(this.searchTerm) > -1;
         });
         
         return filteredStudents;
     }
     
-    confirmStudentRemoval = (studentToRemove: IStudentModel): void => {
-        const newState = _.assign({}, this.state, { 
-            studentToRemove 
-        }) as IStudentsListPageState;
-        
-        this.setState(newState);
+    confirmStudentRemoval = (studentToRemove: IStudentModel): void => {        
+        this.dispatch(setStudentToRemove(studentToRemove));
         
         this.confirmationModal.show();
     }
     
     clearRemovalStudentFromState = (): void => {
-        const newState = _.assign({}, this.state, { 
-            studentToRemove: null 
-        }) as IStudentsListPageState;
-        
-        this.setState(newState);
+        this.dispatch(setStudentToRemove(null));
     }
     
-    removeStudent = (): void => {
-        const index = this.state.students.indexOf(this.state.studentToRemove);
-        
-        const newState = _.assign({}, this.state, {
-            studentToRemove: null,
-            students: [
-                ...this.state.students.slice(0, index),
-                ...this.state.students.slice(index + 1)
-            ]
-        }) as IStudentsListPageState;
-        
-        this.setState(newState);        
+    removeStudent = (): void => {        
+        this.dispatch(removeStudent(this.studentToRemove.registrationNumber));
+            
         this.confirmationModal.hide();
     }
 }
+
+const mapStateToProps = (state) => ({
+    searchTerm: state.searchTerm,
+    studentToRemove: state.studentToRemove,
+    students: state.students
+});
+
+export const StudentsListPage = connect(mapStateToProps)(Page);
