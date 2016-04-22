@@ -45,7 +45,6 @@ export class LayoutPage extends React.Component<ILayoutPageProps, any> {
 
     renderPageHeader() {
         const subtitle = (this.props.subtitle) ? <small>{' '}{this.props.subtitle}</small> : '';
-        let pageHeaderClassName = '';
         let headerButton: JSX.Element;
         
         if (this.props.headerButton) {
