@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { 
-    Row, Col, FormGroup, 
-    ControlLabel, FormControl, HelpBlock,
+    Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock,
     Radio, Form, Button
 } from 'react-bootstrap';
 import { LayoutPage } from './../../common/LayoutPage';
@@ -9,7 +8,6 @@ import { FormButtons } from './../../common/FormButtons';
 
 export class NewStudentPage extends React.Component<any, any> {
     render() {
-        String;
         return (
             <LayoutPage title="New Student">
                 <Row>
