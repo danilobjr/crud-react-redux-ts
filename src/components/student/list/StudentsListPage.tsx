@@ -6,9 +6,9 @@ import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 import { ConfirmationModal } from './../../common/ConfirmationModal';
 import { LayoutPage } from './../../common/LayoutPage';
-import { IStudentModel } from './../IStudentModel';
+import { IStudentModel } from './../../../models/IStudentModel';
 import { StudentsList } from './StudentsList';
-import { changeSearchTerm, setStudentToRemove, removeStudent } from './actions';
+import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
 
 interface IPageState {
     searchTerm: string;

@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
-import { appReducer } from './appReducer';
+import { appReducer } from './../flux/appReducer';
 import { StudentsListPage } from './student/list/StudentsListPage';
 import { NewStudentPage } from './student/new/NewStudentPage';
 import { StudentDetailsPage } from './student/details/StudentDetailsPage';

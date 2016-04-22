@@ -1,45 +1,29 @@
 import * as React from 'react';
-import { 
-    Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock,
-    Radio, Form, Button
-} from 'react-bootstrap';
+import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common/LayoutPage';
-import { FormButtons } from './../../common/FormButtons';
+import { NewStudentForm } from './NewStudentForm';
+import { IStudentModel } from './../../../models/IStudentModel';
+import { addStudent } from './../../../flux/student/actions';
 
-export class NewStudentPage extends React.Component<any, any> {
+class Page extends React.Component<any, any> {    
     render() {
         return (
             <LayoutPage title="New Student">
                 <Row>
                     <Col md={12}>
-                        <Form>
-                            <FormGroup controlId="name">
-                                <ControlLabel>Name</ControlLabel>
-                                <FormControl
-                                    type="text"
-                                    value="Hello"
-                                    placeholder="Enter text"
-                                />
-                                <FormControl.Feedback />
-                                <HelpBlock>Message</HelpBlock>
-                            </FormGroup>
-                            
-                            <FormGroup validationState="error">
-                                <ControlLabel>Registered?</ControlLabel>
-                                <div>
-                                    <Radio name="registered" inline>Yes</Radio>
-                                    <Radio name="registered" inline>No</Radio>
-                                </div>
-                            </FormGroup>
-                            
-                            <FormButtons>
-                                <Button bsStyle="primary" type="submit">Save</Button>
-                                <Button>Cancel</Button>
-                            </FormButtons>
-                        </Form>
+                        <NewStudentForm onSubmit={this.onFormSubmit} />
                     </Col>
                 </Row>
             </LayoutPage>
         );
     }
+    
+    onFormSubmit = (newStudent: IStudentModel) => {
+        this.props.dispatch(addStudent(newStudent));
+        hashHistory.push('/students');
+    }
 }
+
+export const NewStudentPage = connect()(Page);
