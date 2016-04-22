@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Col, FormGroup } from 'react-bootstrap';
 
 interface IFormButtonsProps extends React.HTMLAttributes {
     noMargin?: boolean;
@@ -6,7 +7,13 @@ interface IFormButtonsProps extends React.HTMLAttributes {
 
 export class FormButtons extends React.Component<IFormButtonsProps, any> {    
     render() {
-        return <div {...this.props} className={this.getClassName()}>{this.props.children}</div>;
+        return (
+            <FormGroup {...this.props} className={this.getClassName()}>
+                <Col md={10} mdOffset={2}>
+                    {this.props.children}
+                </Col>
+            </FormGroup>
+        );
     }
     
     getClassName() {
