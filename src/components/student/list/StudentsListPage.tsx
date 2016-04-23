@@ -10,6 +10,7 @@ import { IStudentModel } from './../../../models/IStudentModel';
 import { StudentsList } from './StudentsList';
 import { ToasterMessage } from './../../common/ToasterMessage';
 import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
+import { showSuccessMessage } from './../../../flux/common/actions';
 
 interface IPageState {
     searchTerm: string;
@@ -73,7 +74,7 @@ class Page extends React.Component<any, IPageState> {
     
     removeStudent = (): void => {        
         this.props.dispatch(removeStudent(this.props.studentToRemove.registrationNumber));
-            
+        this.props.dispatch(showSuccessMessage('Student removed'));            
         this.confirmationModal.hide();
     }
 }
