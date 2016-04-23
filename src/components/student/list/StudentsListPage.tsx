@@ -1,14 +1,10 @@
 import * as React from 'react';
-import * as uuid from 'node-uuid';
-import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Button } from 'react-bootstrap';
 import { ConfirmationModal } from './../../common/ConfirmationModal';
 import { LayoutPage } from './../../common/LayoutPage';
 import { IStudentModel } from './../../../models/IStudentModel';
 import { StudentsList } from './StudentsList';
-import { ToasterMessage } from './../../common/ToasterMessage';
 import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
 import { showSuccessMessage } from './../../../flux/common/actions';
 
@@ -37,8 +33,7 @@ class Page extends React.Component<any, IPageState> {
                     ref={(thisElement) => this.confirmationModal = thisElement}
                     onPositiveAnswer={this.removeStudent} 
                     onNegativeAnswer={this.clearRemovalStudentFromState}
-                />
-                <ToasterMessage message={this.props.toasterMessage} />
+                />                
             </LayoutPage>
         );
     }
