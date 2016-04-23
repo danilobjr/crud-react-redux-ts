@@ -1,34 +1,28 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect,  } from 'react-redux';
 import { ToasterMessageType } from './../../models/ToasterMessageType';
 import { IMessage } from './../../models/IMessage';
 import { ToasterMessagePosition } from './../../models/ToasterMessagePosition';
+import { hideToasterMessage } from './../../flux/common/actions';
 
 interface IToasterMessageProps {
     message: IMessage;
     position?: ToasterMessagePosition;
+    dispatch?: any;
 }
 
-interface ITostaerMessage {
-    visible: boolean;
-}
-
-export class ToasterMessage extends React.Component<IToasterMessageProps, any> {
-    constructor() {
-        super();
-        
-        this.state = {
-            visible: false
-        };
-    }
-        
+class ToasterElement extends React.Component<IToasterMessageProps, any> {
     render() {
-        if (!this.props.message) {            
+        if (!this.props.message) {
             return null;
         }
         
-        return <div className={this.getClassName()}>{this.props.message.text}</div>
-    }
+        return (
+            <div className={this.getClassName()}>
+                {this.props.message.text} <span className="fa fa-times close-button" onClick={this.close}></span>
+            </div>
+        );
+    }    
     
     getClassName() {
         let className = ['toaster'];
@@ -54,6 +48,16 @@ export class ToasterMessage extends React.Component<IToasterMessageProps, any> {
     }
     
     getDefaultTypeClass() {
-        return (this.props.message.type) ? `toaster-${ToasterMessageType[this.props.message.type].toLowerCase()}` : 'toaster-success';
+        if (this.props.message && this.props.message.type) { 
+            return `toaster-${ToasterMessageType[this.props.message.type].toLowerCase()}`; 
+        }
+        
+        return 'toaster-success';
+    }
+    
+    close = () => {
+        this.props.dispatch(hideToasterMessage());
     }
 }
+
+export const ToasterMessage = connect()(ToasterElement);
