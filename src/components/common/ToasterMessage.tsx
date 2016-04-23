@@ -2,13 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { ToasterMessageType } from './../../models/ToasterMessageType';
 import { IMessage } from './../../models/IMessage';
-
-enum ToasterMessagePosition {
-    TopLeft,
-    TopRight,
-    BottomLeft,
-    BottomRight    
-}
+import { ToasterMessagePosition } from './../../models/ToasterMessagePosition';
 
 interface IToasterMessageProps {
     message: IMessage;
