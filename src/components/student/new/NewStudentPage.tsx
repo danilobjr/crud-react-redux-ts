@@ -6,6 +6,7 @@ import { LayoutPage } from './../../common/LayoutPage';
 import { NewStudentForm } from './NewStudentForm';
 import { IStudentModel } from './../../../models/IStudentModel';
 import { addStudent } from './../../../flux/student/actions';
+import { showSuccessMessage } from './../../../flux/common/actions';
 
 class Page extends React.Component<any, any> {    
     render() {
@@ -22,6 +23,8 @@ class Page extends React.Component<any, any> {
     
     onFormSubmit = (newStudent: IStudentModel) => {
         this.props.dispatch(addStudent(newStudent));
+        // TODO: action creator to show a message through ToasterMessage component
+        this.props.dispatch(showSuccessMessage('New student created'))
         hashHistory.push('/students');
     }
 }

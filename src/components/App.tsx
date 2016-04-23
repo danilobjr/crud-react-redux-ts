@@ -32,7 +32,8 @@ const initialState = {
             name: 'Fernanda',
             registered: true
         }
-    ]
+    ],
+    toasterMessage: null
 };
 
 const store = createStore(appReducer, initialState);

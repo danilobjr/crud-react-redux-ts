@@ -8,6 +8,7 @@ import { ConfirmationModal } from './../../common/ConfirmationModal';
 import { LayoutPage } from './../../common/LayoutPage';
 import { IStudentModel } from './../../../models/IStudentModel';
 import { StudentsList } from './StudentsList';
+import { ToasterMessage } from './../../common/ToasterMessage';
 import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
 
 interface IPageState {
@@ -36,6 +37,7 @@ class Page extends React.Component<any, IPageState> {
                     onPositiveAnswer={this.removeStudent} 
                     onNegativeAnswer={this.clearRemovalStudentFromState}
                 />
+                <ToasterMessage message={this.props.toasterMessage} />
             </LayoutPage>
         );
     }
@@ -79,7 +81,8 @@ class Page extends React.Component<any, IPageState> {
 const mapStateToProps = (state) => ({
     searchTerm: state.searchTerm,
     studentToRemove: state.studentToRemove,
-    students: state.students
+    students: state.students,
+    toasterMessage: state.toasterMessage
 });
 
 export const StudentsListPage = connect(mapStateToProps)(Page);
