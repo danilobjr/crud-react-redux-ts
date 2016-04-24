@@ -2,17 +2,14 @@ import * as React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Grid, Navbar, Nav, NavDropdown, MenuItem, PageHeader } from 'react-bootstrap';
-import { ToasterMessage } from './ToasterMessage';
-import { IMessage } from './../../models/IMessage';
 
 interface IPageProps {
     title: string;
     subtitle?: string;
     headerButton?: JSX.Element;
-    toasterMessage?: IMessage;
 }
 
-class Page extends React.Component<IPageProps, any> {
+export class LayoutPage extends React.Component<IPageProps, any> {
     render() {
         return (
             <div>
@@ -22,7 +19,6 @@ class Page extends React.Component<IPageProps, any> {
                     {this.renderPageHeader()}
                     {this.props.children}
                 </Grid>
-                <ToasterMessage message={this.props.toasterMessage} />
             </div>
         );
     }
@@ -61,9 +57,3 @@ class Page extends React.Component<IPageProps, any> {
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    toasterMessage: state.toasterMessage
-});
-
-export const LayoutPage = connect(mapStateToProps)(Page as any) as typeof Page;

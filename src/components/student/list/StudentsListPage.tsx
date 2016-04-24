@@ -6,7 +6,7 @@ import { LayoutPage } from './../../common/LayoutPage';
 import { IStudentModel } from './../../../models/IStudentModel';
 import { StudentsList } from './StudentsList';
 import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
-import { showSuccessMessage } from './../../../flux/common/actions';
+import { toastr } from 'react-redux-toastr';
 
 interface IPageState {
     searchTerm: string;
@@ -69,7 +69,7 @@ class Page extends React.Component<any, IPageState> {
     
     removeStudent = (): void => {        
         this.props.dispatch(removeStudent(this.props.studentToRemove.registrationNumber));
-        this.props.dispatch(showSuccessMessage('Student removed'));            
+        toastr.success('Student removed');
         this.confirmationModal.hide();
     }
 }

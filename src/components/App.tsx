@@ -7,6 +7,7 @@ import { appReducer } from './../flux/appReducer';
 import { StudentsListPage } from './student/list/StudentsListPage';
 import { NewStudentPage } from './student/new/NewStudentPage';
 import { StudentDetailsPage } from './student/details/StudentDetailsPage';
+import ReduxToastr from 'react-redux-toastr';
 
 const initialState = {
     searchTerm: '',
@@ -32,8 +33,7 @@ const initialState = {
             name: 'Fernanda',
             registered: true
         }
-    ],
-    toasterMessage: null
+    ]
 };
 
 const store = createStore(appReducer, initialState);
@@ -43,12 +43,15 @@ export class App extends React.Component<any, any> {
     render() {
         return (
             <Provider store={store}>
-                <Router history={history}>
-                    <Route path="/" component={StudentsListPage} />
-                    <Route path="students" component={StudentsListPage} />
-                    <Route path="students/new" component={NewStudentPage} />
-                    <Route path="students/details/:registrationNumber" component={StudentDetailsPage} />                    
-                </Router>
+                <div>
+                    <Router history={history}>
+                        <Route path="/" component={StudentsListPage} />
+                        <Route path="students" component={StudentsListPage} />
+                        <Route path="students/new" component={NewStudentPage} />
+                        <Route path="students/details/:registrationNumber" component={StudentDetailsPage} />                    
+                    </Router>
+                    <ReduxToastr />
+                </div>
             </Provider>
         );
     }
