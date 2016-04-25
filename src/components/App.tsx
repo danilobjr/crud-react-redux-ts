@@ -7,6 +7,7 @@ import { appReducer } from './../flux/appReducer';
 import { StudentsListPage } from './student/list/StudentsListPage';
 import { NewStudentPage } from './student/new/NewStudentPage';
 import { StudentDetailsPage } from './student/details/StudentDetailsPage';
+import { StudentEditPage } from './student/edit/StudentEditPage';
 import ReduxToastr from 'react-redux-toastr';
 
 const initialState = {
@@ -48,7 +49,8 @@ export class App extends React.Component<any, any> {
                         <Route path="/" component={StudentsListPage} />
                         <Route path="students" component={StudentsListPage} />
                         <Route path="students/new" component={NewStudentPage} />
-                        <Route path="students/details/:registrationNumber" component={StudentDetailsPage} />                    
+                        <Route path="students/details/:registrationNumber" component={StudentDetailsPage} />
+                        <Route path="students/edit/:registrationNumber" component={StudentEditPage} />                    
                     </Router>
                     <ReduxToastr />
                 </div>
