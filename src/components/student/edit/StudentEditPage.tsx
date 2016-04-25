@@ -1,12 +1,17 @@
 import * as React from 'react';
+import * as Redux from 'redux';
 import * as _ from 'lodash';
+import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 import { LayoutPage } from './../../common';
 import { IStudentModel, IState } from './../../../models';
 import { StudentEditForm } from './StudentEditForm';
+import { editStudent } from './../../../flux/student/actions';
 
 interface IComponentProps {
     student: IStudentModel;
+    dispatch: Redux.Dispatch;
 }
 
 class StudentEditPageComponent extends React.Component<IComponentProps, any> {
@@ -21,8 +26,9 @@ class StudentEditPageComponent extends React.Component<IComponentProps, any> {
     }
     
     onFormSubmit = (student: IStudentModel): void => {
-        console.log(student);
-        console.warn('TODO: go back to student list; show toastr; actions; reducer');
+        this.props.dispatch(editStudent(student));
+        hashHistory.push('/students');
+        toastr.success('Student updated');
     }
 }
 
