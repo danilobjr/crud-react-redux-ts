@@ -1,5 +1,5 @@
 
-import { IStudentModel } from './../../models/IStudentModel';
+import { IStudentModel } from './../../models';
 
 export const CHANGE_SEARCH_TERM = 'CHANGE_SEARCH_TERM';
 export const SET_STUDENT_TO_REMOVE = 'SET_STUDENT_TO_REMOVE';

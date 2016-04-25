@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { ConfirmationModal } from './../../common/ConfirmationModal';
 import { LayoutPage } from './../../common/LayoutPage';
-import { IStudentModel } from './../../../models/IStudentModel';
+import { IStudentModel } from './../../../models';
 import { StudentsList } from './StudentsList';
 import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
 import { toastr } from 'react-redux-toastr';

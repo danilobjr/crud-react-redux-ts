@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common/LayoutPage';
 import { NewStudentForm } from './NewStudentForm';
-import { IStudentModel } from './../../../models/IStudentModel';
+import { IStudentModel } from './../../../models';
 import { addStudent } from './../../../flux/student/actions';
 import { toastr } from 'react-redux-toastr';
 

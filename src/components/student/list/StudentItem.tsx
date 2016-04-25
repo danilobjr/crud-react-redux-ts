@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { Table } from './../../common/Table';
-import { IStudentModel } from './../../../models/IStudentModel';
+import { IStudentModel } from './../../../models';
 
 interface IStudentItemProps {
     student: IStudentModel;

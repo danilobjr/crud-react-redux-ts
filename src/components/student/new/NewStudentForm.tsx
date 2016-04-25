@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { Link } from 'react-router';
 import { Col, FormGroup, ControlLabel, FormControl, HelpBlock, Radio, Form, Button } from 'react-bootstrap';
 import { FormButtons } from './../../common/FormButtons';
-import { IStudentModel } from './../../../models/IStudentModel';
+import { IStudentModel } from './../../../models';
 
 interface INewStudentFormProps {
     onSubmit: (newStudent: IStudentModel) => void;

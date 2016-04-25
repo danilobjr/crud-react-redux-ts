@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common/LayoutPage';
-import { IStudentModel } from './../../../models/IStudentModel';
+import { IStudentModel } from './../../../models';
 
 interface IPageProps {
     student: IStudentModel;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IStudentModel } from './../../../models/IStudentModel';
+import { IStudentModel } from './../../../models';
 import { Link } from 'react-router';
 import { Table } from './../../common/Table';
 import { StudentItem } from './StudentItem';
