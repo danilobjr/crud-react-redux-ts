@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import { LayoutPage } from './../../common';
 import { IStudentModel, IState } from './../../../models';
+import { StudentEditForm } from './StudentEditForm';
 
 interface IProps {
     student: IStudentModel;
@@ -10,9 +11,11 @@ interface IProps {
 
 class StudentEditPageComponent extends React.Component<IProps, any> {
     render() {
+        const isStudentRegistered = this.props.student.registered;
+        
         return (
             <LayoutPage title={this.props.student.name} subtitle= "student edition">
-                
+                <StudentEditForm student={this.props.student} />
             </LayoutPage>
         );
     }
