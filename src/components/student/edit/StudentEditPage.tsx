@@ -5,19 +5,24 @@ import { LayoutPage } from './../../common';
 import { IStudentModel, IState } from './../../../models';
 import { StudentEditForm } from './StudentEditForm';
 
-interface IProps {
+interface IComponentProps {
     student: IStudentModel;
 }
 
-class StudentEditPageComponent extends React.Component<IProps, any> {
+class StudentEditPageComponent extends React.Component<IComponentProps, any> {
     render() {
         const isStudentRegistered = this.props.student.registered;
         
         return (
             <LayoutPage title={this.props.student.name} subtitle= "student edition">
-                <StudentEditForm student={this.props.student} />
+                <StudentEditForm student={this.props.student} onSubmit={this.onFormSubmit} />
             </LayoutPage>
         );
+    }
+    
+    onFormSubmit = (student: IStudentModel): void => {
+        console.log(student);
+        console.warn('TODO: go back to student list; show toastr; actions; reducer');
     }
 }
 
