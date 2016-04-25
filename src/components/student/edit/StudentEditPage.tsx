@@ -12,14 +12,17 @@ class StudentEditPageComponent extends React.Component<IProps, any> {
     render() {
         return (
             <LayoutPage title={this.props.student.name} subtitle= "student edition">
-                <p>{this.props.student.registrationNumber}</p>
+                
             </LayoutPage>
         );
     }
 }
 
 const mapStateToProps = (state: IState, props) => {
-    const student = _.find<IStudentModel>(state.students, student => student.registrationNumber === props.params.registrationNumber);    
+    const student = _.find<IStudentModel>(state.students, student => {
+        return student.registrationNumber === props.params.registrationNumber
+    });    
+    
     return { student };
 };
 
