@@ -2,7 +2,7 @@ import * as React from 'react';
 import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { LayoutPage } from './../../common/LayoutPage';
+import { LayoutPage } from './../../common';
 import { NewStudentForm } from './NewStudentForm';
 import { IStudentModel } from './../../../models';
 import { addStudent } from './../../../flux/student/actions';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import { Link } from 'react-router';
 import { Col, FormGroup, ControlLabel, FormControl, HelpBlock, Radio, Form, Button } from 'react-bootstrap';
-import { FormButtons } from './../../common/FormButtons';
+import { FormButtons } from './../../common';
 import { IStudentModel } from './../../../models';
 
 interface INewStudentFormProps {

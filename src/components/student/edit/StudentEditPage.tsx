@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { connect } from 'react-redux';
-import { LayoutPage } from './../../common/LayoutPage';
+import { LayoutPage } from './../../common';
 import { IStudentModel, IState } from './../../../models';
 
 interface IProps {

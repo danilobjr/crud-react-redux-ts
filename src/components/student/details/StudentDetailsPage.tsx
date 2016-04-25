@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { LayoutPage } from './../../common/LayoutPage';
+import { LayoutPage } from './../../common';
 import { IStudentModel } from './../../../models';
 
 interface IPageProps {

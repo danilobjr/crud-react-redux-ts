@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { ConfirmationModal } from './../../common/ConfirmationModal';
-import { LayoutPage } from './../../common/LayoutPage';
+import { LayoutPage, ConfirmationModal } from './../../common';
 import { IStudentModel } from './../../../models';
 import { StudentsList } from './StudentsList';
 import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
