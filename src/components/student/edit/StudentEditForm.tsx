@@ -63,9 +63,9 @@ export class StudentEditForm extends React.Component<IComponentProps, IComponent
         );
     }
     
-    onChange = (stateProperty: string, value) => {        
+    onChange = (studentProperty: string, value) => {        
         const student: IStudentModel = _.assign({}, this.state.student, {
-            [stateProperty]: value
+            [studentProperty]: value
         }) as IStudentModel;
         
         this.setState({ student });

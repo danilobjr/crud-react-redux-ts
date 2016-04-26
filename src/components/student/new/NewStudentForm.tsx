@@ -9,7 +9,8 @@ interface INewStudentFormProps {
     onSubmit: (newStudent: IStudentModel) => void;
 }
 
-interface INewStudentFormState extends IStudentModel {    
+interface INewStudentFormState {
+    student: IStudentModel;
 }
 
 export class NewStudentForm extends React.Component<INewStudentFormProps, INewStudentFormState> {
@@ -22,7 +23,7 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
                         <FormControl
                             type="text"
                             placeholder="Student name"
-                            onInput={(e) => this.onInput('name', (e.target as HTMLInputElement).value)}
+                            onInput={(e) => this.onChange('name', (e.target as HTMLInputElement).value)}
                         />
                         <FormControl.Feedback />
                         <HelpBlock>Message</HelpBlock>
@@ -35,11 +36,11 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
                         <Radio 
                             inline 
                             name="registered"
-                            onChange={() => this.onInput('registered', true)}>Yes</Radio>
+                            onChange={() => this.onChange('registered', true)}>Yes</Radio>
                         <Radio 
                             inline 
                             name="registered" 
-                            onChange={() => this.onInput('registered', false)}>No</Radio>
+                            onChange={() => this.onChange('registered', false)}>No</Radio>
                     </Col>
                 </FormGroup>
                 
@@ -51,16 +52,16 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
         );
     }
     
-    onInput = (studentProperty, value) => {
-        const newState: IStudentModel = _.assign({}, this.state, { 
+    onChange = (studentProperty: string, value) => {
+        const student: IStudentModel = _.assign({}, this.state.student, { 
             [studentProperty]: value 
         }) as IStudentModel;
         
-        this.setState(newState);
+        this.setState({ student });
     }
     
     onSubmit = (e) => {
         e.preventDefault();        
-        this.props.onSubmit(this.state);
+        this.props.onSubmit(this.state.student);
     }
 }
