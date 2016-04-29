@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
@@ -37,7 +38,11 @@ const initialState = {
     ]
 };
 
-const store = createStore(appReducer, initialState);
+const store = createStore(
+    appReducer, 
+    initialState,
+    applyMiddleware(ReduxThunk)
+);
 const history = syncHistoryWithStore(hashHistory, store);
 
 export class App extends React.Component<any, any> {
