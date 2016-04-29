@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { Link } from 'react-router';
-import { Col, FormGroup, ControlLabel, FormControl, HelpBlock, Radio, Form, Button } from 'react-bootstrap';
+import { Col, FormGroup, ControlLabel, FormControl, Radio, Form, Button } from 'react-bootstrap';
 import { FormButtons } from './../../common';
 import { IStudentModel } from './../../../models';
 
@@ -14,6 +14,18 @@ interface INewStudentFormState {
 }
 
 export class NewStudentForm extends React.Component<INewStudentFormProps, INewStudentFormState> {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            student: { 
+                registrationNumber: '',
+                name: '',
+                registered: false
+            }
+        };
+    }
+    
     render() {
         return (
             <Form horizontal onSubmit={this.onSubmit}>
@@ -26,7 +38,6 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
                             onInput={(e) => this.onChange('name', (e.target as HTMLInputElement).value)}
                         />
                         <FormControl.Feedback />
-                        <HelpBlock>Message</HelpBlock>
                     </Col>
                 </FormGroup>
                 
@@ -34,11 +45,9 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
                     <Col md={2} componentClass={ControlLabel}>Registered?</Col>                                
                     <Col md={10}>
                         <Radio 
-                            inline 
                             name="registered"
                             onChange={() => this.onChange('registered', true)}>Yes</Radio>
                         <Radio 
-                            inline 
                             name="registered" 
                             onChange={() => this.onChange('registered', false)}>No</Radio>
                     </Col>
