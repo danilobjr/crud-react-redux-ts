@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as toastrReducer } from 'react-redux-toastr';
-import { talkingToTheServer, searchTerm, students, studentToRemove } from './student/reducers';
+import { talkingToTheServer } from './common/reducers';
+import { searchTerm, students, studentToRemove } from './student/reducers';
 
 export const appReducer = combineReducers({
     talkingToTheServer,

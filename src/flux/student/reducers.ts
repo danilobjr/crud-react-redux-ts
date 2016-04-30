@@ -1,20 +1,8 @@
 import * as _ from 'lodash';
 import * as uuid from 'node-uuid';
 import { IStudentModel } from './../../models';
-import { TALKING_TO_THE_SERVER, ADD_STUDENT, REMOVE_STUDENT, STUDENTS_RECEIVED, FINISH_TALKING_TO_SERVER,
+import { ADD_STUDENT, REMOVE_STUDENT, STUDENTS_RECEIVED,
          EDIT_STUDENT, CHANGE_SEARCH_TERM, SET_STUDENT_TO_REMOVE } from './actions';
-
-// TODO: move this reducer to another file
-export function talkingToTheServer(state: boolean = false, action): boolean {
-    switch (action.type) {
-        case TALKING_TO_THE_SERVER:
-            return true;
-        case FINISH_TALKING_TO_SERVER:
-            return false;
-        default:
-            return state;
-    }
-}
 
 export function students(state = [], action): IStudentModel[] {
     switch (action.type) {
