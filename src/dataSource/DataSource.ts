@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 import { IStudentModel } from './../models';
-import { StudentFormatter } from './../formatters';
+import { StudentMapper } from './../mappers';
 
 const endPointUrl = 'https://react-redux-ts.firebaseio.com/'; 
 
@@ -19,7 +19,7 @@ export const DataSource: IDataSource = {
             return axios
                 .get(`${endPointUrl}students.json`)
                 .then(response => {
-                    return StudentFormatter.toStudents(response.data);
+                    return StudentMapper.toStudents(response.data);
                 });
         }
         // get: function(key: string): IStudentModel {
