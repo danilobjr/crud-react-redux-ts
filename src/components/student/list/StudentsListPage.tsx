@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { LayoutPage, ConfirmationModal } from './../../common';
-import { IStudentModel } from './../../../models';
+import { IStudentModel, IState } from './../../../models';
 import { StudentsList } from './StudentsList';
-import { changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
+import { getAllStudents, changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
 import { toastr } from 'react-redux-toastr';
 
 interface IPageState {
@@ -15,6 +15,11 @@ interface IPageState {
 
 class Page extends React.Component<any, IPageState> {
     private confirmationModal: ConfirmationModal;
+    
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(getAllStudents());
+    }
     
     render() {        
         return (
@@ -73,11 +78,11 @@ class Page extends React.Component<any, IPageState> {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: IState) => ({
+    talkingToTheServer: state.talkingToTheServer,
     searchTerm: state.searchTerm,
     studentToRemove: state.studentToRemove,
-    students: state.students,
-    toasterMessage: state.toasterMessage
+    students: state.students
 });
 
 export const StudentsListPage = connect(mapStateToProps)(Page);

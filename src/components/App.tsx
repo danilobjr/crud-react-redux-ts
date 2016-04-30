@@ -11,36 +11,8 @@ import { StudentDetailsPage } from './student/details/StudentDetailsPage';
 import { StudentEditPage } from './student/edit/StudentEditPage';
 import ReduxToastr from 'react-redux-toastr';
 
-const initialState = {
-    searchTerm: '',
-    studentToRemove: null,
-    students: [
-        {
-            registrationNumber: '11111',
-            name: 'Fulano',
-            registered: true
-        },
-        {
-            registrationNumber: '22222',
-            name: 'Cicrano',
-            registered: false
-        },
-        {
-            registrationNumber: '33333',
-            name: 'Silva',
-            registered: true
-        },
-        {
-            registrationNumber: '44444',
-            name: 'Fernanda',
-            registered: true
-        }
-    ]
-};
-
 const store = createStore(
     appReducer, 
-    initialState,
     applyMiddleware(ReduxThunk)
 );
 const history = syncHistoryWithStore(hashHistory, store);
