@@ -3,6 +3,7 @@ import { IStudentModel } from './../models';
 import { StudentMapper } from './../mappers';
 
 const endPointUrl = 'https://react-redux-ts.firebaseio.com/'; 
+const students = 'students.json';
 
 interface ICrudMethods<T> {
     getAll: () => Promise<T[]>;
@@ -17,7 +18,7 @@ export const DataSource: IDataSource = {
     students: {
         getAll: function(): Promise<IStudentModel[]> {
             return axios
-                .get(`${endPointUrl}students.json`)
+                .get(`${endPointUrl}${students}`)
                 .then(response => {
                     return StudentMapper.toStudents(response.data);
                 });
