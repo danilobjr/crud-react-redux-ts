@@ -1,7 +1,7 @@
 import { IStudentModel, IState } from './../../models';
 import * as axios from 'axios';
 import * as _ from 'lodash';
-import { default as commonActionCreators } from './../common';
+import * as commonActionCreators from './../common';
 import { DataSource } from './../../dataSource';
 
 export const CHANGE_SEARCH_TERM = 'CHANGE_SEARCH_TERM';
@@ -54,7 +54,6 @@ export function studentsReceived(students: IStudentModel[]) {
     };
 }
 
-// TODO: refator: needs a DataSource and a Formatter
 export function getAllStudents() {
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
@@ -62,22 +61,6 @@ export function getAllStudents() {
         DataSource.students.getAll().then(students => {
             dispatch(commonActionCreators.finishTalkingToTheServer());
             dispatch(studentsReceived(students as IStudentModel[]));
-        })
-        
-        // axios
-        //     .get('https://react-redux-ts.firebaseio.com/students.json')
-        //     .then(response => {
-        //         const students = _.chain(response.data)
-        //             .mapValues((s, id) => _.merge(s, { id }))
-        //             .toArray()
-        //             .value();
-                
-        //         return students;    
-        //     })
-        //     .then(students => {
-        //         dispatch(commonActionCreators.finishTalkingToTheServer());
-        //         dispatch(studentsReceived(students as IStudentModel[]));                
-        //     })
-        //     .catch(error => console.error(error))
+        });
     }
 }

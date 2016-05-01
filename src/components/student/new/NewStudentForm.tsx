@@ -19,6 +19,7 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
     
         this.state = {
             student: { 
+                id: '',
                 registrationNumber: '',
                 name: '',
                 registered: false

@@ -26,7 +26,7 @@ export class App extends React.Component<any, any> {
                         <Route path="/" component={StudentsListPage} />
                         <Route path="students" component={StudentsListPage} />
                         <Route path="students/new" component={NewStudentPage} />
-                        <Route path="students/details/:registrationNumber" component={StudentDetailsPage} />
+                        <Route path="students/details/:id" component={StudentDetailsPage} />
                         <Route path="students/edit/:registrationNumber" component={StudentEditPage} />                    
                     </Router>
                     <ReduxToastr />

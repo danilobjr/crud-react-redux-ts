@@ -1,20 +1,52 @@
 import * as React from 'react';
 import * as _ from 'lodash';
+import * as Redux from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
 import { IStudentModel } from './../../../models';
+import * as commonActionCreators from './../../../flux/common';
+import { DataSource } from './../../../dataSource';
 
 interface IPageProps {
+    studentId: string;
+    dispatch: Redux.Dispatch;
+}
+
+interface IPageState {
     student: IStudentModel;
 }
 
-class Page extends React.Component<IPageProps, any> {
+class Page extends React.Component<IPageProps, IPageState> {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            student: {
+                id: '',
+                registrationNumber: '',
+                name: '',
+                registered: false
+            }
+        };
+    }
+    
+    componentDidMount() {
+        const { dispatch } = this.props;
+        
+        dispatch(commonActionCreators.talkingToTheServer());
+        
+        DataSource.students.get(this.props.studentId).then(student => {
+            this.setState({ student });
+            dispatch(commonActionCreators.finishTalkingToTheServer());
+        });
+    }
+    
     render() {
         return (
             <LayoutPage 
-                title={this.props.student.name}
+                title={this.state.student.name}
                 subtitle="student details"
             >
                 <Row>
@@ -22,13 +54,13 @@ class Page extends React.Component<IPageProps, any> {
                         <Row>
                             <Col md={12}>
                                 <label>Registration Number</label>
-                                <p>{this.props.student.registrationNumber}</p>
+                                <p>{this.state.student.registrationNumber}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col md={12}>
                                 <label>Name</label>
-                                <p>{this.props.student.name}</p>
+                                <p>{this.state.student.name}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -49,15 +81,13 @@ class Page extends React.Component<IPageProps, any> {
     }
     
     registeredToString() {
-        return this.props.student.registered ? 'Yes' : 'No';
+        return this.state.student.registered ? 'Yes' : 'No';
     }
 }
 
 const mapStateToProps = (state, props) => {
-    const student = _.find<IStudentModel>(state.students, s => s.registrationNumber === props.params.registrationNumber);
-    
     return {
-        student
+        studentId: props.params.id
     };
 };
 

@@ -1,6 +1,6 @@
 import { talkingToTheServer, finishTalkingToTheServer } from './actions';
 
-export default {
+export {
     talkingToTheServer,
     finishTalkingToTheServer
 };
