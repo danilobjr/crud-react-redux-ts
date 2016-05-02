@@ -9,6 +9,7 @@ interface ICrudMethods<T> {
     getAll: () => Promise<T[]>;
     get: (key: string) => Promise<T>;
     save: (entity: T) => Promise<T>;
+    remove: (key: string) => Promise<string>;
 }
 
 export interface IDataSource {
@@ -20,9 +21,7 @@ export const DataSource: IDataSource = {
         getAll: function(): Promise<IStudentViewModel[]> {
             return axios
                 .get(`${endPointUrl}${students}.json`)
-                .then(response => {
-                    return StudentMapper.toStudents(response.data);
-                });
+                .then(response => StudentMapper.toStudents(response.data));
         },
         get: function(id: string): Promise<IStudentViewModel> {
             return axios
@@ -38,6 +37,11 @@ export const DataSource: IDataSource = {
                     const id: string = (response.data as any).name;
                     return StudentMapper.toStudentViewModel(id, studentViewModel);
                 });
+        },
+        remove: function (studentId: string): Promise<string> {
+            return axios
+                .delete(`${endPointUrl}${students}/${studentId}.json`)
+                .then(() => studentId);
         }
     }
 };

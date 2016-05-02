@@ -10,8 +10,8 @@ export function students(state = [], action): IStudentViewModel[] {
             return [].concat(action.students);
         }
         case REMOVE_STUDENT: {
-            const studentToRemove = _.find(state, student => {
-                return student.registrationNumber === action.registrationNumber
+            const studentToRemove = _.find(state, (student) => {
+                return student.id === action.id
             });
             
             const index = state.indexOf(studentToRemove);

@@ -43,10 +43,23 @@ export function saveStudent(student: IStudentViewModel) {
     }
 }
 
-export function removeStudent(registrationNumber: string) {
+export function removeStudentOnServer(id: string) {
+
+    return function (dispatch: Redux.Dispatch, getState: () => IState) {
+        dispatch(commonActionCreators.talkingToTheServer());
+        
+        DataSource.students.remove(id).then(studentId => {
+            dispatch(commonActionCreators.finishTalkingToTheServer());
+            dispatch(removeStudentFromList(id));
+            toastr.success('Student removed');
+        });
+    }
+}
+
+export function removeStudentFromList(id: string) {
     return {
         type: REMOVE_STUDENT,
-        registrationNumber
+        id        
     };
 }
 
