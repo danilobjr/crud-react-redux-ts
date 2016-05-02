@@ -4,7 +4,10 @@ import { Link } from 'react-router';
 import { LayoutPage, ConfirmationModal } from './../../common';
 import { IStudentViewModel, IState } from './../../../models';
 import { StudentsList } from './StudentsList';
-import { getAllStudents, changeSearchTerm, setStudentToRemove, removeStudentOnServer } from './../../../flux/student/actions';
+import { 
+    getAllStudentsFromServer, changeSearchTerm, 
+    setStudentToRemove, removeStudentOnServer 
+} from './../../../flux/student/actions';
 import { toastr } from 'react-redux-toastr';
 
 interface IPageState {
@@ -18,7 +21,7 @@ class Page extends React.Component<any, IPageState> {
     
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(getAllStudents());
+        dispatch(getAllStudentsFromServer());
     }
     
     render() {        

@@ -29,7 +29,7 @@ export function setStudentToRemove(student: IStudentViewModel) {
     };
 }
 
-export function saveStudent(student: IStudentViewModel) {
+export function saveStudentOnServer(student: IStudentViewModel) {
     student.registrationNumber = uuid.v4();
     
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
@@ -77,7 +77,7 @@ export function studentsReceived(students: IStudentViewModel[]) {
     };
 }
 
-export function getAllStudents() {
+export function getAllStudentsFromServer() {
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
         
