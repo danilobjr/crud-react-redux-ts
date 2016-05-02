@@ -7,7 +7,7 @@ import { toastr } from 'react-redux-toastr';
 import { LayoutPage } from './../../common';
 import { IStudentViewModel, IState } from './../../../models';
 import { StudentEditForm } from './StudentEditForm';
-import { editStudent } from './../../../flux/student/actions';
+import { editStudent } from './../../../flux/student';
 
 interface IComponentProps {
     student: IStudentViewModel;
