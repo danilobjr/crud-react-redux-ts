@@ -56,7 +56,6 @@ export function saveStudentOnServer(student: IStudentViewModel) {
 }
 
 export function removeStudentOnServer(id: string) {
-
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
         
