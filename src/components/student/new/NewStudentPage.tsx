@@ -20,7 +20,7 @@ class NewStudentPageComponent extends React.Component<any, any> {
     }
     
     onFormSubmit = (newStudent: IStudentViewModel) => {
-        this.props.dispatch(studentActionCreators.saveStudent(newStudent));
+        this.props.dispatch(studentActionCreators.saveStudentOnServer(newStudent));
     }
 }
 

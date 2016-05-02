@@ -7,7 +7,7 @@ import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
 import { IStudentViewModel } from './../../../models';
 import * as commonActionCreators from './../../../flux/common';
-import { DataSource } from './../../../dataSource';
+import { dataSource } from './../../../dataSource';
 
 interface IPageProps {
     studentId: string;
@@ -37,7 +37,7 @@ class Page extends React.Component<IPageProps, IPageState> {
         
         dispatch(commonActionCreators.talkingToTheServer());
         
-        DataSource.students.get(this.props.studentId).then(student => {
+        dataSource.students.get(this.props.studentId).then(student => {
             this.setState({ student });
             dispatch(commonActionCreators.finishTalkingToTheServer());
         });

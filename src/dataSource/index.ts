@@ -1,5 +1,5 @@
-import { IDataSource, DataSource } from './DataSource';
+import { dataSource } from './DataSource';
 
 export {
-    DataSource
+    dataSource
 }

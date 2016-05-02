@@ -17,7 +17,7 @@ export class StudentMapper {
         };
     }
     
-    static toStudentViewModel(id: string, studentViewModel: IStudentViewModel): IStudentViewModel {
-        return _.assign({}, studentViewModel, { id })  as IStudentViewModel;
+    static toStudentViewModel(id: string, studentDBModel: IStudentViewModel | IStudentDBModel): IStudentViewModel {
+        return _.assign({}, studentDBModel, { id })  as IStudentViewModel;
     }
 }
