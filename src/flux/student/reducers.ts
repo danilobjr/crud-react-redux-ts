@@ -1,10 +1,10 @@
 import * as _ from 'lodash';
 import * as uuid from 'node-uuid';
-import { IStudentModel } from './../../models';
+import { IStudentViewModel } from './../../models';
 import { ADD_STUDENT, REMOVE_STUDENT, STUDENTS_RECEIVED,
          EDIT_STUDENT, CHANGE_SEARCH_TERM, SET_STUDENT_TO_REMOVE } from './actions';
 
-export function students(state = [], action): IStudentModel[] {
+export function students(state = [], action): IStudentViewModel[] {
     switch (action.type) {
         case STUDENTS_RECEIVED: {
             return [].concat(action.students);
@@ -22,14 +22,12 @@ export function students(state = [], action): IStudentModel[] {
             ];
         }
         case ADD_STUDENT:
-            action.newStudent.registrationNumber = uuid.v4();
-            
             return [
                 ...state,
                 action.newStudent
             ];
         case EDIT_STUDENT: {            
-            return state.map<IStudentModel>(student => {
+            return state.map<IStudentViewModel>(student => {
                 if (student.registrationNumber === action.editedStudent.registrationNumber) {
                     return _.assign({}, student, action.editedStudent);
                 }

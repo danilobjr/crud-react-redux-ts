@@ -1,7 +1,9 @@
 import { IState } from './IState';
-import { IStudentModel } from './IStudentModel';
+import { IStudentViewModel } from './IStudentViewModel';
+import { IStudentDBModel } from './IStudentDBModel';
 
 export {
     IState,
-    IStudentModel
+    IStudentViewModel,
+    IStudentDBModel
 }

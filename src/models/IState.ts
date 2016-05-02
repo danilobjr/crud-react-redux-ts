@@ -1,11 +1,11 @@
-import { IStudentModel } from './IStudentModel';
+import { IStudentViewModel } from './IStudentViewModel';
 import { Reducer } from 'redux';
 
 export interface IState {
     talkingToTheServer: boolean;
     searchTerm: string;
-    studentToRemove: IStudentModel;
-    students: IStudentModel[];
+    studentToRemove: IStudentViewModel;
+    students: IStudentViewModel[];
     routing: (state?: any, options?: any) => Reducer;
     toastr: Reducer;
 }

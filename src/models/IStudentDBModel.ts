@@ -1,5 +1,4 @@
-export interface IStudentModel {
-    id: string;
+export interface IStudentDBModel {
     registrationNumber: string;
     name: string;
     registered: boolean;

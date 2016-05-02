@@ -5,12 +5,12 @@ import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import { LayoutPage } from './../../common';
-import { IStudentModel, IState } from './../../../models';
+import { IStudentViewModel, IState } from './../../../models';
 import { StudentEditForm } from './StudentEditForm';
 import { editStudent } from './../../../flux/student/actions';
 
 interface IComponentProps {
-    student: IStudentModel;
+    student: IStudentViewModel;
     dispatch: Redux.Dispatch;
 }
 
@@ -25,7 +25,7 @@ class StudentEditPageComponent extends React.Component<IComponentProps, any> {
         );
     }
     
-    onFormSubmit = (student: IStudentModel): void => {
+    onFormSubmit = (student: IStudentViewModel): void => {
         this.props.dispatch(editStudent(student));
         hashHistory.push('/students');
         toastr.success('Student updated');
@@ -33,7 +33,7 @@ class StudentEditPageComponent extends React.Component<IComponentProps, any> {
 }
 
 const mapStateToProps = (state: IState, props) => {
-    const student = _.find<IStudentModel>(state.students, student => {
+    const student = _.find<IStudentViewModel>(state.students, student => {
         return student.registrationNumber === props.params.registrationNumber
     });    
     

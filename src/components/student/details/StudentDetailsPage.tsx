@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
-import { IStudentModel } from './../../../models';
+import { IStudentViewModel } from './../../../models';
 import * as commonActionCreators from './../../../flux/common';
 import { DataSource } from './../../../dataSource';
 
@@ -15,7 +15,7 @@ interface IPageProps {
 }
 
 interface IPageState {
-    student: IStudentModel;
+    student: IStudentViewModel;
 }
 
 class Page extends React.Component<IPageProps, IPageState> {

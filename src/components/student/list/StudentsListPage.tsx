@@ -2,15 +2,15 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { LayoutPage, ConfirmationModal } from './../../common';
-import { IStudentModel, IState } from './../../../models';
+import { IStudentViewModel, IState } from './../../../models';
 import { StudentsList } from './StudentsList';
 import { getAllStudents, changeSearchTerm, setStudentToRemove, removeStudent } from './../../../flux/student/actions';
 import { toastr } from 'react-redux-toastr';
 
 interface IPageState {
     searchTerm: string;
-    students: IStudentModel[];
-    studentToRemove: IStudentModel;
+    students: IStudentViewModel[];
+    studentToRemove: IStudentViewModel;
 }
 
 class Page extends React.Component<any, IPageState> {
@@ -61,7 +61,7 @@ class Page extends React.Component<any, IPageState> {
         return filteredStudents;
     }
     
-    confirmStudentRemoval = (studentToRemove: IStudentModel): void => {        
+    confirmStudentRemoval = (studentToRemove: IStudentViewModel): void => {        
         this.props.dispatch(setStudentToRemove(studentToRemove));
         
         this.confirmationModal.show();

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { Table } from './../../common';
-import { IStudentModel } from './../../../models';
+import { IStudentViewModel } from './../../../models';
 
 interface IStudentItemProps {
-    student: IStudentModel;
-    onRemove: (studentToRemove: IStudentModel) => void;
+    student: IStudentViewModel;
+    onRemove: (studentToRemove: IStudentViewModel) => void;
 }
 
 export class StudentItem extends React.Component<IStudentItemProps, any> {
@@ -41,7 +41,7 @@ export class StudentItem extends React.Component<IStudentItemProps, any> {
         return registrationIconClass.join(' ');
     }
     
-    onRemove(studentToRemove: IStudentModel) {
+    onRemove(studentToRemove: IStudentViewModel) {
         this.props.onRemove(studentToRemove);
     };
 }

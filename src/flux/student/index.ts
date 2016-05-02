@@ -1,14 +1,15 @@
 import { 
-    addStudent, editStudent, removeStudent, getAllStudents,
-    studentsReceived, changeSearchTerm, setStudentToRemove 
+    editStudent, removeStudent, getAllStudents,
+    studentsReceived, changeSearchTerm, setStudentToRemove,
+    tryToSaveStudent 
 } from './actions';
 
-export default {
-    addStudent,
+export {
     editStudent,
     removeStudent,
     getAllStudents,
     studentsReceived,
     changeSearchTerm,
-    setStudentToRemove
+    setStudentToRemove,
+    tryToSaveStudent
 }

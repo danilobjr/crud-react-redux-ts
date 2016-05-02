@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
 import { NewStudentForm } from './NewStudentForm';
-import { IStudentModel } from './../../../models';
-import { addStudent } from './../../../flux/student/actions';
-import { toastr } from 'react-redux-toastr';
+import { IStudentViewModel } from './../../../models';
+import * as studentActionCreators from './../../../flux/student';
 
 class NewStudentPageComponent extends React.Component<any, any> {
     render() {
@@ -21,10 +20,10 @@ class NewStudentPageComponent extends React.Component<any, any> {
         );
     }
     
-    onFormSubmit = (newStudent: IStudentModel) => {
-        this.props.dispatch(addStudent(newStudent));
-        toastr.success('Student created');
-        hashHistory.push('/students');
+    onFormSubmit = (newStudent: IStudentViewModel) => {
+        this.props.dispatch(studentActionCreators.tryToSaveStudent(newStudent));
+        // toastr.success('Student created');
+        // hashHistory.push('/students');
     }
 }
 
