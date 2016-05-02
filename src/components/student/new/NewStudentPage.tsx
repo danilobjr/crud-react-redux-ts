@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
@@ -22,8 +21,6 @@ class NewStudentPageComponent extends React.Component<any, any> {
     
     onFormSubmit = (newStudent: IStudentViewModel) => {
         this.props.dispatch(studentActionCreators.tryToSaveStudent(newStudent));
-        // toastr.success('Student created');
-        // hashHistory.push('/students');
     }
 }
 
