@@ -29,7 +29,7 @@ export function setStudentToRemove(student: IStudentViewModel) {
     };
 }
 
-export function tryToSaveStudent(student: IStudentViewModel) {
+export function saveStudent(student: IStudentViewModel) {
     student.registrationNumber = uuid.v4();
     
     return function (dispatch: Redux.Dispatch, getState: () => IState) {

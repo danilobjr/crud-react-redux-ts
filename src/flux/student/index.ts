@@ -1,7 +1,7 @@
 import { 
     editStudent, removeStudent, getAllStudents,
     studentsReceived, changeSearchTerm, setStudentToRemove,
-    tryToSaveStudent 
+    saveStudent 
 } from './actions';
 
 export {
@@ -11,5 +11,5 @@ export {
     studentsReceived,
     changeSearchTerm,
     setStudentToRemove,
-    tryToSaveStudent
+    saveStudent
 }
