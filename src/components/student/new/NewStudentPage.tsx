@@ -6,7 +6,7 @@ import { NewStudentForm } from './NewStudentForm';
 import { IStudent } from './../../../models';
 import * as studentActionCreators from './../../../flux/student';
 
-class NewStudentPageComponent extends React.Component<any, any> {
+class Page extends React.Component<any, any> {
     render() {
         return (
             <LayoutPage title="New Student">
@@ -24,4 +24,4 @@ class NewStudentPageComponent extends React.Component<any, any> {
     }
 }
 
-export const NewStudentPage = connect()(NewStudentPageComponent);
+export const NewStudentPage = connect()(Page);

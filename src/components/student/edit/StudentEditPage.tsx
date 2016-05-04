@@ -8,17 +8,17 @@ import { StudentEditForm } from './StudentEditForm';
 import { DataSource } from './../../../dataSource';
 import { updateStudentOnServer, getStudentToEditionFromServer } from './../../../flux/student';
 
-interface IComponentProps {
+interface IPageProps {
     studentId: string;
     student: IStudent;
     dispatch: Redux.Dispatch;
 }
 
-interface IComponentState {
+interface IPageState {
     student: IStudent;
 }
 
-class StudentEditPageComponent extends React.Component<IComponentProps, IComponentState> {    
+class Page extends React.Component<IPageProps, IPageState> {    
     componentDidMount() {
         const { dispatch, studentId } = this.props;
         dispatch(getStudentToEditionFromServer(studentId));
@@ -49,4 +49,4 @@ const mapStateToProps = (state: IState, props) => {
     };
 };
 
-export const StudentEditPage = connect(mapStateToProps)(StudentEditPageComponent);
+export const StudentEditPage = connect(mapStateToProps)(Page);
