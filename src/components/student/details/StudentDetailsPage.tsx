@@ -66,7 +66,7 @@ const mapStateToProps = (state: IState, props) => ({
     student: state.studentToSeeDetails
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Redux.Dispatch) => ({
     getStudentFromServerToSeeDetails: (studentId: string) => dispatch(getStudentFromServerToSeeDetails(studentId))
 });
 
