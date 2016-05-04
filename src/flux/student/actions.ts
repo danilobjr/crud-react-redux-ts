@@ -72,7 +72,7 @@ export function saveStudentOnServer(student: IStudent) {
     }
 }
 
-export function getStudentToEditionFromServer(id: string) {
+export function getStudentFromServerToEdit(id: string) {
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
         

@@ -6,7 +6,7 @@ import { LayoutPage } from './../../common';
 import { IStudent, IState } from './../../../models';
 import { StudentEditForm } from './StudentEditForm';
 import { DataSource } from './../../../dataSource';
-import { updateStudentOnServer, getStudentToEditionFromServer } from './../../../flux/student';
+import { updateStudentOnServer, getStudentFromServerToEdit } from './../../../flux/student';
 
 interface IPageProps {
     studentId: string;
@@ -21,7 +21,7 @@ interface IPageState {
 class Page extends React.Component<IPageProps, IPageState> {    
     componentDidMount() {
         const { dispatch, studentId } = this.props;
-        dispatch(getStudentToEditionFromServer(studentId));
+        dispatch(getStudentFromServerToEdit(studentId));
     }
     
     render() {
