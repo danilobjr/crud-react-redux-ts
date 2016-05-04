@@ -11,7 +11,8 @@ import { updateStudentOnServer, getStudentFromServerToEdit } from './../../../fl
 interface IPageProps {
     studentId: string;
     student: IStudent;
-    dispatch: Redux.Dispatch;
+    getStudentFromServerToEdit: (studentId: string) => void;
+    updateStudentOnServer: (student: IStudent) => void;
 }
 
 interface IPageState {
@@ -20,8 +21,8 @@ interface IPageState {
 
 class Page extends React.Component<IPageProps, IPageState> {    
     componentDidMount() {
-        const { dispatch, studentId } = this.props;
-        dispatch(getStudentFromServerToEdit(studentId));
+        
+        this.props.getStudentFromServerToEdit(this.props.studentId);
     }
     
     render() {
@@ -35,18 +36,18 @@ class Page extends React.Component<IPageProps, IPageState> {
     }
     
     onFormSubmit = (student: IStudent): void => {
-        this.props.dispatch(updateStudentOnServer(student));
+        this.props.updateStudentOnServer(student);
     }
 }
 
-const mapStateToProps = (state: IState, props) => {
-    const studentId = props.params.id;
-    const studentToEdit = state.studentToEdit;
-        
-    return { 
-        studentId,
-        student: studentToEdit
-    };
-};
+const mapStateToProps = (state: IState, props) => ({ 
+    studentId: props.params.id,
+    student: state.studentToEdit
+});
 
-export const StudentEditPage = connect(mapStateToProps)(Page);
+const mapDispatchToProps = (dispatch: Redux.Dispatch) => ({
+    getStudentFromServerToEdit: (studentId: string) => dispatch(getStudentFromServerToEdit(studentId)),
+    updateStudentOnServer: (student: IStudent) => dispatch(updateStudentOnServer(student))
+});
+
+export const StudentEditPage = connect(mapStateToProps, mapDispatchToProps)(Page);
