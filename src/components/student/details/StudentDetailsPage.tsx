@@ -11,13 +11,12 @@ import { getStudentFromServerToSeeDetails } from './../../../flux/student';
 interface IPageProps {
     studentId: string;
     student: IStudent;
-    dispatch: Redux.Dispatch;
+    getStudentFromServerToSeeDetails: (id: string) => void;
 }
 
 class Page extends React.Component<IPageProps, any> {    
     componentDidMount() {
-        const { dispatch, studentId } = this.props;        
-        dispatch(getStudentFromServerToSeeDetails(studentId));
+        this.props.getStudentFromServerToSeeDetails(this.props.studentId);
     }
     
     render() {
@@ -62,11 +61,13 @@ class Page extends React.Component<IPageProps, any> {
     }
 }
 
-const mapStateToProps = (state: IState, props) => {    
-    return {
-        studentId: props.params.id,
-        student: state.studentToSeeDetails
-    };
-};
+const mapStateToProps = (state: IState, props) => ({    
+    studentId: props.params.id,
+    student: state.studentToSeeDetails
+});
 
-export const StudentDetailsPage = connect(mapStateToProps)(Page);
+const mapDispatchToProps = (dispatch) => ({
+    getStudentFromServerToSeeDetails: (studentId: string) => dispatch(getStudentFromServerToSeeDetails(studentId))
+});
+
+export const StudentDetailsPage = connect(mapStateToProps, mapDispatchToProps)(Page);
