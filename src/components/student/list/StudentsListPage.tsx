@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { LayoutPage, ConfirmationModal } from './../../common';
-import { IStudentViewModel, IState } from './../../../models';
+import { IStudent, IState } from './../../../models';
 import { StudentsList } from './StudentsList';
 import { 
     getAllStudentsFromServer, changeSearchTerm, 
@@ -12,8 +12,8 @@ import { toastr } from 'react-redux-toastr';
 
 interface IPageState {
     searchTerm: string;
-    students: IStudentViewModel[];
-    studentToRemove: IStudentViewModel;
+    students: IStudent[];
+    studentToRemove: IStudent;
 }
 
 class Page extends React.Component<any, IPageState> {
@@ -64,7 +64,7 @@ class Page extends React.Component<any, IPageState> {
         return filteredStudents;
     }
     
-    confirmStudentRemoval = (studentToRemove: IStudentViewModel): void => {        
+    confirmStudentRemoval = (studentToRemove: IStudent): void => {        
         this.props.dispatch(setStudentToRemove(studentToRemove));
         
         this.confirmationModal.show();

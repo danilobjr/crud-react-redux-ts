@@ -3,14 +3,14 @@ import * as _ from 'lodash';
 import { Link } from 'react-router';
 import { Col, FormGroup, ControlLabel, FormControl, Radio, Form, Button } from 'react-bootstrap';
 import { FormButtons } from './../../common';
-import { IStudentViewModel } from './../../../models';
+import { IStudent } from './../../../models';
 
 interface INewStudentFormProps {
-    onSubmit: (newStudent: IStudentViewModel) => void;
+    onSubmit: (newStudent: IStudent) => void;
 }
 
 interface INewStudentFormState {
-    student: IStudentViewModel;
+    student: IStudent;
 }
 
 export class NewStudentForm extends React.Component<INewStudentFormProps, INewStudentFormState> {
@@ -63,9 +63,9 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
     }
     
     onChange = (studentProperty: string, value) => {
-        const student: IStudentViewModel = _.assign({}, this.state.student, { 
+        const student: IStudent = _.assign({}, this.state.student, { 
             [studentProperty]: value 
-        }) as IStudentViewModel;
+        }) as IStudent;
         
         this.setState({ student });
     }

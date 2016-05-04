@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { IStudentViewModel } from './../../../models';
+import { IStudent } from './../../../models';
 import { Link } from 'react-router';
 import { Table } from './../../common';
 import { StudentItem } from './StudentItem';
 
 interface IStudentsListProps {
-    students: IStudentViewModel[];
+    students: IStudent[];
     onSearch: (searchTerm: string) => void;
-    onRemove: (studentToRemove: IStudentViewModel) => void;
+    onRemove: (studentToRemove: IStudent) => void;
 }
 
 export class StudentsList extends React.Component<IStudentsListProps, any> {
@@ -49,7 +49,7 @@ export class StudentsList extends React.Component<IStudentsListProps, any> {
         });
     }
     
-    onRemove = (studentToRemove: IStudentViewModel) => {
+    onRemove = (studentToRemove: IStudent) => {
         this.props.onRemove(studentToRemove);
     };
 }

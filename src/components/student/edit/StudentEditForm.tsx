@@ -3,15 +3,15 @@ import { Link } from 'react-router';
 import { Col, Form, FormGroup, FormControl, ControlLabel, 
          Radio, Button } from 'react-bootstrap';
 import { FormButtons } from './../../common';
-import { IStudentViewModel } from './../../../models';
+import { IStudent } from './../../../models';
 
 interface IComponentProps {
-    student: IStudentViewModel;
-    onSubmit: (student: IStudentViewModel) => void;
+    student: IStudent;
+    onSubmit: (student: IStudent) => void;
 }
 
 interface IComponentState {
-    student: IStudentViewModel;
+    student: IStudent;
 }
 
 export class StudentEditForm extends React.Component<IComponentProps, IComponentState> {
@@ -19,8 +19,13 @@ export class StudentEditForm extends React.Component<IComponentProps, IComponent
         super(props);
     
         this.state = {
-            student: this.props.student
+            student: props.student
         };
+    }
+    
+    componentWillReceiveProps(nextProps: IComponentProps) {
+        const student = _.assign({}, this.state.student, nextProps.student) as IStudent;
+        this.setState({ student });
     }
     
     render() {
@@ -64,9 +69,9 @@ export class StudentEditForm extends React.Component<IComponentProps, IComponent
     }
     
     onChange = (studentProperty: string, value) => {        
-        const student: IStudentViewModel = _.assign({}, this.state.student, {
+        const student: IStudent = _.assign({}, this.state.student, {
             [studentProperty]: value
-        }) as IStudentViewModel;
+        }) as IStudent;
         
         this.setState({ student });
     }

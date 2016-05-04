@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
 import { NewStudentForm } from './NewStudentForm';
-import { IStudentViewModel } from './../../../models';
+import { IStudent } from './../../../models';
 import * as studentActionCreators from './../../../flux/student';
 
 class NewStudentPageComponent extends React.Component<any, any> {
@@ -19,7 +19,7 @@ class NewStudentPageComponent extends React.Component<any, any> {
         );
     }
     
-    onFormSubmit = (newStudent: IStudentViewModel) => {
+    onFormSubmit = (newStudent: IStudent) => {
         this.props.dispatch(studentActionCreators.saveStudentOnServer(newStudent));
     }
 }

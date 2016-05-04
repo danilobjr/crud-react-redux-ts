@@ -5,9 +5,9 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
-import { IStudentViewModel } from './../../../models';
+import { IStudent } from './../../../models';
 import * as commonActionCreators from './../../../flux/common';
-import { dataSource } from './../../../dataSource';
+import { DataSource } from './../../../dataSource';
 
 interface IPageProps {
     studentId: string;
@@ -15,7 +15,7 @@ interface IPageProps {
 }
 
 interface IPageState {
-    student: IStudentViewModel;
+    student: IStudent;
 }
 
 class Page extends React.Component<IPageProps, IPageState> {
@@ -37,9 +37,9 @@ class Page extends React.Component<IPageProps, IPageState> {
         
         dispatch(commonActionCreators.talkingToTheServer());
         
-        dataSource.students.get(this.props.studentId).then(student => {
-            this.setState({ student });
+        DataSource.students.get(this.props.studentId).then(student => {
             dispatch(commonActionCreators.finishTalkingToTheServer());
+            this.setState({ student });
         });
     }
     

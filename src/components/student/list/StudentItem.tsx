@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { Table } from './../../common';
-import { IStudentViewModel } from './../../../models';
+import { IStudent } from './../../../models';
 
 interface IStudentItemProps {
-    student: IStudentViewModel;
-    onRemove: (studentToRemove: IStudentViewModel) => void;
+    student: IStudent;
+    onRemove: (studentToRemove: IStudent) => void;
 }
 
 export class StudentItem extends React.Component<IStudentItemProps, any> {
@@ -21,7 +21,7 @@ export class StudentItem extends React.Component<IStudentItemProps, any> {
                     <Link to={`/students/details/${this.props.student.id}`}>
                         <span className="fa fa-search fa-fw"></span>
                     </Link>
-                    <Link to={`/students/edit/${this.props.student.registrationNumber}`}>
+                    <Link to={`/students/edit/${this.props.student.id}`}>
                         <span className="fa fa-pencil fa-fw"></span>
                     </Link>
                     <a href="#" onClick={() => this.onRemove(this.props.student)}>
@@ -41,7 +41,7 @@ export class StudentItem extends React.Component<IStudentItemProps, any> {
         return registrationIconClass.join(' ');
     }
     
-    onRemove(studentToRemove: IStudentViewModel) {
+    onRemove(studentToRemove: IStudent) {
         this.props.onRemove(studentToRemove);
     };
 }

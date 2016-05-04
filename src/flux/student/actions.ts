@@ -4,14 +4,16 @@ import * as uuid from 'node-uuid';
 import { toastr } from 'react-redux-toastr';
 import { hashHistory } from 'react-router';
 import * as commonActionCreators from './../common';
-import { dataSource } from './../../dataSource';
-import { IStudentViewModel, IState } from './../../models';
+import { DataSource } from './../../dataSource';
+import { IStudent, IState } from './../../models';
+import { StudentMapper } from './../../mappers';
 
 export const CHANGE_SEARCH_TERM = 'CHANGE_SEARCH_TERM';
 export const SET_STUDENT_TO_REMOVE = 'SET_STUDENT_TO_REMOVE';
 export const REMOVE_STUDENT_FROM_LIST = 'REMOVE_STUDENT_FROM_LIST';
 export const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS';
 export const STUDENTS_RECEIVED = 'STUDENTS_RECEIVED';
+export const SET_STUDENT_TO_EDITION = 'SET_STUDENT_TO_EDITION';
 
 export function changeSearchTerm(searchTerm: string) {
     return {
@@ -20,7 +22,7 @@ export function changeSearchTerm(searchTerm: string) {
     };
 }
 
-export function setStudentToRemove(student: IStudentViewModel) {
+export function setStudentToRemove(student: IStudent) {
     return {
         type: SET_STUDENT_TO_REMOVE,
         student
@@ -30,27 +32,57 @@ export function setStudentToRemove(student: IStudentViewModel) {
 export function removeStudentFromList(id: string) {
     return {
         type: REMOVE_STUDENT_FROM_LIST,
-        id        
+        id
     };
 }
 
-export function studentsReceived(students: IStudentViewModel[]) {
+export function studentsReceived(students: IStudent[]) {
     return {
         type: STUDENTS_RECEIVED,
         students
     };
 }
 
-export function saveStudentOnServer(student: IStudentViewModel) {
+export function setStudentToEdition(student: IStudent) {
+    return {
+        type: SET_STUDENT_TO_EDITION,
+        student
+    };
+}
+
+export function saveStudentOnServer(student: IStudent) {
     student.registrationNumber = uuid.v4();
     
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
         
-        dataSource.students.addOrUpdate(student).then(studentSaved => {
+        DataSource.students.add(student).then(studentId => {
             dispatch(commonActionCreators.finishTalkingToTheServer());
             hashHistory.push('/students');
             toastr.success('Student saved');
+        });
+    }
+}
+
+export function getStudentToEditionFromServer(id: string) {
+    return function (dispatch: Redux.Dispatch, getState: () => IState) {
+        dispatch(commonActionCreators.talkingToTheServer());
+        
+        DataSource.students.get(id).then(student => {
+            dispatch(commonActionCreators.finishTalkingToTheServer());
+            dispatch(setStudentToEdition(student));
+        });
+    }
+}
+
+export function updateStudentOnServer(editedStudent: IStudent) {
+    return function (dispatch: Redux.Dispatch, getState: () => IState) {
+        dispatch(commonActionCreators.talkingToTheServer());
+        
+        DataSource.students.update(editedStudent).then(updatedStudent => {
+            dispatch(commonActionCreators.finishTalkingToTheServer());
+            hashHistory.push('/students');
+            toastr.success('Student updated');
         });
     }
 }
@@ -59,21 +91,10 @@ export function removeStudentOnServer(id: string) {
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
         
-        dataSource.students.remove(id).then(studentId => {
+        DataSource.students.remove(id).then(studentId => {
             dispatch(commonActionCreators.finishTalkingToTheServer());
-            dispatch(removeStudentFromList(id));
+            dispatch(removeStudentFromList(studentId));
             toastr.success('Student removed');
-        });
-    }
-}
-
-export function updateStudentOnServer(editedStudent: IStudentViewModel) {
-    return function (dispatch: Redux.Dispatch, getState: () => IState) {
-        dispatch(commonActionCreators.talkingToTheServer());
-        
-        dataSource.students.addOrUpdate(editedStudent).then(updatedStudent => {
-            hashHistory.push('/students');
-            toastr.success(`Student updated. Registration Number: ${updatedStudent.registrationNumber}`);
         });
     }
 }
@@ -82,9 +103,9 @@ export function getAllStudentsFromServer() {
     return function (dispatch: Redux.Dispatch, getState: () => IState) {
         dispatch(commonActionCreators.talkingToTheServer());
         
-        dataSource.students.getAll().then(students => {
+        DataSource.students.getAll().then(students => {
             dispatch(commonActionCreators.finishTalkingToTheServer());
-            dispatch(studentsReceived(students as IStudentViewModel[]));
+            dispatch(studentsReceived(students));
         });
     }
 }

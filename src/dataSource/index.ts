@@ -1,5 +1,5 @@
-import { dataSource } from './DataSource';
+import { DataSource } from './DataSource';
 
 export {
-    dataSource
+    DataSource
 }

@@ -1,23 +1,16 @@
 import * as _ from 'lodash';
-import { IStudentViewModel, IStudentDBModel } from './../models';
+import { IStudent } from './../models';
+import { ICrudMapper, CrudMapperBase } from './../dataSource/base';
 
-export class StudentMapper {
-    static toStudents(data: any): IStudentViewModel[] {
+export class StudentMapper extends CrudMapperBase<IStudent> implements ICrudMapper<IStudent> {
+    toViewModelList(data: any): IStudent[] {
          return _.chain(data)
             .mapValues((student, id) => _.merge(student, { id }))
             .toArray()
-            .value() as IStudentViewModel[];
+            .value() as IStudent[];
     }
     
-    static toStudentDBModel(viewModel: IStudentViewModel): IStudentDBModel {
-        return {
-            registrationNumber: viewModel.registrationNumber,
-            name: viewModel.name,
-            registered: viewModel.registered
-        };
-    }
-    
-    static toStudentViewModel(id: string, studentDBModel: IStudentViewModel | IStudentDBModel): IStudentViewModel {
-        return _.assign({}, studentDBModel, { id })  as IStudentViewModel;
+    toViewModel(id: string, student: IStudent): IStudent {
+        return _.assign({}, student, { id })  as IStudent;
     }
 }
