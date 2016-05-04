@@ -20,8 +20,7 @@ class Page extends React.Component<any, IPageState> {
     private confirmationModal: ConfirmationModal;
     
     componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(getAllStudentsFromServer());
+        this.props.getAllStudentsFromServer();
     }
     
     render() {        
@@ -46,7 +45,7 @@ class Page extends React.Component<any, IPageState> {
     }
     
     changeSearchTerm = (searchTerm: string) => {
-        this.props.dispatch(changeSearchTerm(searchTerm));
+        this.props.changeSearchTerm(searchTerm);
     }
     
     getFilteredStudents() {
@@ -65,26 +64,32 @@ class Page extends React.Component<any, IPageState> {
     }
     
     confirmStudentRemoval = (studentToRemove: IStudent): void => {        
-        this.props.dispatch(setStudentToRemove(studentToRemove));
-        
+        this.props.setStudentToRemove(studentToRemove);        
         this.confirmationModal.show();
     }
     
     clearRemovalStudentFromState = (): void => {
-        this.props.dispatch(setStudentToRemove(null));
+        this.props.clearStudentToRemoveOnState();
     }
     
     removeStudent = (): void => {        
         this.confirmationModal.hide();
-        this.props.dispatch(removeStudentOnServer(this.props.studentToRemove.id));
+        this.props.removeStudentOnServer(this.props.studentToRemove.id);
     }
 }
 
 const mapStateToProps = (state: IState) => ({
-    talkingToTheServer: state.talkingToTheServer,
     searchTerm: state.searchTerm,
     studentToRemove: state.studentToRemove,
     students: state.students
 });
 
-export const StudentsListPage = connect(mapStateToProps)(Page);
+const mapDispatchToProps = (dispatch: Redux.Dispatch) => ({
+    changeSearchTerm: (searchTerm: string) => dispatch(changeSearchTerm(searchTerm)),
+    getAllStudentsFromServer: () => dispatch(getAllStudentsFromServer()),
+    removeStudentOnServer: (studentId: string) => dispatch(removeStudentOnServer(studentId)),
+    setStudentToRemove: (studentToRemove: IStudent) => dispatch(setStudentToRemove(studentToRemove)),
+    clearStudentToRemoveOnState: () => dispatch(setStudentToRemove(null))
+});
+
+export const StudentsListPage = connect(mapStateToProps, mapDispatchToProps)(Page);
