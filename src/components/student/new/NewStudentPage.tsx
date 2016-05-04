@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import { LayoutPage } from './../../common';
 import { NewStudentForm } from './NewStudentForm';
 import { IStudent } from './../../../models';
-import * as studentActionCreators from './../../../flux/student';
+import { saveStudentOnServer } from './../../../flux/student';
 
 class Page extends React.Component<any, any> {
     render() {
@@ -20,8 +20,14 @@ class Page extends React.Component<any, any> {
     }
     
     onFormSubmit = (newStudent: IStudent) => {
-        this.props.dispatch(studentActionCreators.saveStudentOnServer(newStudent));
+        this.props.saveStudentOnServer(newStudent);
     }
 }
 
-export const NewStudentPage = connect()(Page);
+const mapStateToProps = null;
+
+const mapDispatchToProps = (dispatch: Redux.Dispatch) => ({
+    saveStudentOnServer: (newStudent: IStudent) => dispatch(saveStudentOnServer(newStudent))
+});
+
+export const NewStudentPage = connect(mapStateToProps, mapDispatchToProps)(Page);
