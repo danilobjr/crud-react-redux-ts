@@ -15,11 +15,7 @@ interface IPageProps {
     updateStudentOnServer: (student: IStudent) => void;
 }
 
-interface IPageState {
-    student: IStudent;
-}
-
-class Page extends React.Component<IPageProps, IPageState> {    
+class Page extends React.Component<IPageProps, any> {    
     componentDidMount() {
         
         this.props.getStudentFromServerToEdit(this.props.studentId);
