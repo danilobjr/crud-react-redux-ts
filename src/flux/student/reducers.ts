@@ -2,7 +2,8 @@ import * as _ from 'lodash';
 import * as uuid from 'node-uuid';
 import { IStudent } from './../../models';
 import { REMOVE_STUDENT_FROM_LIST, STUDENTS_RECEIVED,
-         CHANGE_SEARCH_TERM, SET_STUDENT_TO_REMOVE, SET_STUDENT_TO_EDITION } from './actions';
+         CHANGE_SEARCH_TERM, SET_STUDENT_TO_REMOVE, 
+         SET_STUDENT_TO_EDITION, SET_STUDENT_TO_SEE_DETAILS } from './actions';
 
 export function students(state = [], action): IStudent[] {
     switch (action.type) {
@@ -48,6 +49,15 @@ export function studentToEdit(state = {}, action) {
     switch (action.type) {
         case SET_STUDENT_TO_EDITION:
             return _.assign({}, state, action.student);
+        default:
+            return state;
+    }
+}
+
+export function studentToSeeDetails(state = {}, action) {
+    switch (action.type) {
+        case SET_STUDENT_TO_SEE_DETAILS:
+            return _.assign({}, state, action.student);    
         default:
             return state;
     }

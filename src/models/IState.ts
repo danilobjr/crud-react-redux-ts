@@ -6,6 +6,7 @@ export interface IState {
     searchTerm: string;
     studentToRemove: IStudent;
     studentToEdit: IStudent;
+    studentToSeeDetails: IStudent;
     students: IStudent[];
     routing: (state?: any, options?: any) => Reducer;
     toastr: Reducer;

@@ -1,7 +1,7 @@
 import { 
     updateStudentOnServer, removeStudentOnServer, getAllStudentsFromServer,
     getStudentToEditionFromServer, studentsReceived, changeSearchTerm, setStudentToRemove,
-    saveStudentOnServer
+    saveStudentOnServer, getStudentFromServerToSeeDetails
 } from './actions';
 
 export {
@@ -12,5 +12,6 @@ export {
     getAllStudentsFromServer,
     saveStudentOnServer,
     updateStudentOnServer,
-    removeStudentOnServer
+    removeStudentOnServer,
+    getStudentFromServerToSeeDetails
 }

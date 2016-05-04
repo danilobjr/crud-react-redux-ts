@@ -14,6 +14,7 @@ export const REMOVE_STUDENT_FROM_LIST = 'REMOVE_STUDENT_FROM_LIST';
 export const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS';
 export const STUDENTS_RECEIVED = 'STUDENTS_RECEIVED';
 export const SET_STUDENT_TO_EDITION = 'SET_STUDENT_TO_EDITION';
+export const SET_STUDENT_TO_SEE_DETAILS = 'SET_STUDENT_TO_SEE_DETAILS';
 
 export function changeSearchTerm(searchTerm: string) {
     return {
@@ -46,6 +47,13 @@ export function studentsReceived(students: IStudent[]) {
 export function setStudentToEdition(student: IStudent) {
     return {
         type: SET_STUDENT_TO_EDITION,
+        student
+    };
+}
+
+export function setStudentToSeeDetails(student: IStudent) {
+    return {
+        type: SET_STUDENT_TO_SEE_DETAILS,
         student
     };
 }
@@ -106,6 +114,17 @@ export function getAllStudentsFromServer() {
         DataSource.students.getAll().then(students => {
             dispatch(commonActionCreators.finishTalkingToTheServer());
             dispatch(studentsReceived(students));
+        });
+    }
+}
+
+export function getStudentFromServerToSeeDetails(id: string) {
+    return function (dispatch: Redux.Dispatch, getState: () => IState) {
+        dispatch(commonActionCreators.talkingToTheServer());
+        
+        DataSource.students.get(id).then(student => {
+            dispatch(commonActionCreators.finishTalkingToTheServer());
+            dispatch(setStudentToSeeDetails(student));
         });
     }
 }
