@@ -2,24 +2,38 @@ import * as React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Grid, Navbar, Nav, NavDropdown, MenuItem, PageHeader } from 'react-bootstrap';
+import { IState } from './../../models';
+import { LoadingIcon } from './LoadingIcon';
 
 interface IPageProps {
     title: string;
     subtitle?: string;
     headerButton?: JSX.Element;
+    talkingToTheServer?: boolean;
 }
 
-export class LayoutPage extends React.Component<IPageProps, any> {
+class Page extends React.Component<IPageProps, any> {
     render() {
         return (
             <div>
                 {this.renderNavbar()}
-
-                <Grid>
-                    {this.renderPageHeader()}
-                    {this.props.children}
-                </Grid>
+                {this.renderView()}
             </div>
+        );
+    }
+    
+    renderView() {
+        const {children, talkingToTheServer} = this.props;
+        
+        if (talkingToTheServer) {
+            return <LoadingIcon />;
+        }
+        
+        return (
+            <Grid>
+                {this.renderPageHeader()}
+                {children}
+            </Grid>
         );
     }
 
@@ -57,3 +71,9 @@ export class LayoutPage extends React.Component<IPageProps, any> {
         );
     }
 }
+
+const mapStateToProps = (state: IState) => ({
+    talkingToTheServer: state.talkingToTheServer
+});
+
+export const LayoutPage = connect(mapStateToProps)(Page as any) as typeof Page;

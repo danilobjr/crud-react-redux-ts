@@ -1,0 +1,5 @@
+.loading-icon {
+    @include position(absolute, 50% null null 50%);
+    margin: -14px;
+    @include animation-duration(0.3s);
+}
