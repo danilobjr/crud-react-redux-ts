@@ -30,7 +30,7 @@ class Page extends React.Component<IPageProps, any> {
         }
         
         return (
-            <Grid>
+            <Grid className="animation-slide-in-up">
                 {this.renderPageHeader()}
                 {children}
             </Grid>
