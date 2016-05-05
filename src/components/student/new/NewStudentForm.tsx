@@ -38,7 +38,6 @@ export class NewStudentForm extends React.Component<INewStudentFormProps, INewSt
                             placeholder="Student name"
                             onInput={(e) => this.onChange('name', (e.target as HTMLInputElement).value)}
                         />
-                        <FormControl.Feedback />
                     </Col>
                 </FormGroup>
                 
