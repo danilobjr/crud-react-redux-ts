@@ -11,5 +11,5 @@
 // animations
 
 .animation-slide-in-up {
-    @include animation(slideInUp 250ms ease-out);
+    @include animation(slideInUp $animation-duration ease-out);
 }
